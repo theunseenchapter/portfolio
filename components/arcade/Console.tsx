@@ -14,7 +14,8 @@ const KEYS: Record<string, Action['t']> = {
   ArrowUp: 'UP', ArrowDown: 'DOWN', ArrowLeft: 'LEFT', ArrowRight: 'RIGHT',
   Enter: 'A', ' ': 'A', z: 'A', Z: 'A',
   Escape: 'B', Backspace: 'B', x: 'B', X: 'B',
-  m: 'START', M: 'START', o: 'SELECT', O: 'SELECT', p: 'POWER', P: 'POWER', r: 'RESUME', R: 'RESUME',
+  q: 'X', Q: 'X', y: 'Y', Y: 'Y',
+  m: 'START', M: 'START', o: 'SELECT', O: 'SELECT', h: 'HOME', H: 'HOME', p: 'POWER', P: 'POWER', r: 'RESUME', R: 'RESUME',
 };
 
 function openHref(href: string) {
@@ -35,6 +36,7 @@ function Hw({ action, label, className, repeat, send, children }: {
     <button
       type="button"
       className={`hw ${className}`}
+      data-act={action}
       aria-label={label}
       onPointerDown={(e) => {
         if (e.button !== 0) return;
@@ -50,11 +52,77 @@ function Hw({ action, label, className, repeat, send, children }: {
   );
 }
 
+type Dir = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT';
+
+/* Analogue stick. Drag past the dead-zone to fire a direction (UP/DOWN hold-repeat), tap or press
+   Enter/Space on it for `tap`. The cap follows the pointer and springs back on release. */
+function Stick({ side, label, tap, send }: { side: 'left' | 'right'; label: string; tap: Action['t']; send: (a: Action) => void }) {
+  const cap = useRef<HTMLSpanElement>(null);
+  const st = useRef<{ id: number; cx: number; cy: number; r: number; dir: Dir | ''; moved: boolean; t1?: number; t2?: number }>({ id: -1, cx: 0, cy: 0, r: 1, dir: '', moved: false });
+  const stopRepeat = () => { window.clearTimeout(st.current.t1); window.clearInterval(st.current.t2); };
+  useEffect(() => stopRepeat, []);
+
+  const setCap = (x: number, y: number) => {
+    cap.current?.style.setProperty('--sx', x.toFixed(3));
+    cap.current?.style.setProperty('--sy', y.toFixed(3));
+  };
+  const fire = (d: Dir) => {
+    send({ t: d } as Action);
+    if (d === 'UP' || d === 'DOWN') {
+      st.current.t1 = window.setTimeout(() => { st.current.t2 = window.setInterval(() => send({ t: d } as Action), 140); }, 380);
+    }
+  };
+  const release = (btn: HTMLButtonElement, fireTap: boolean) => {
+    const s = st.current;
+    stopRepeat();
+    if (fireTap && !s.moved) send({ t: tap } as Action);
+    s.id = -1; s.dir = ''; s.moved = false;
+    btn.removeAttribute('data-drag');
+    setCap(0, 0);
+  };
+
+  return (
+    <button
+      type="button"
+      className={`hw stick ${side}-stick`}
+      data-act={tap}
+      aria-label={label}
+      onPointerDown={(e) => {
+        if (e.button !== 0) return;
+        const b = e.currentTarget.getBoundingClientRect();
+        Object.assign(st.current, { id: e.pointerId, cx: b.left + b.width / 2, cy: b.top + b.height / 2, r: b.width / 2, dir: '', moved: false });
+        e.currentTarget.setPointerCapture(e.pointerId);
+        e.currentTarget.setAttribute('data-drag', '');
+      }}
+      onPointerMove={(e) => {
+        const s = st.current;
+        if (e.pointerId !== s.id) return;
+        let dx = (e.clientX - s.cx) / s.r, dy = (e.clientY - s.cy) / s.r;
+        const m = Math.hypot(dx, dy);
+        if (m > 1) { dx /= m; dy /= m; }
+        setCap(dx, dy);
+        const mag = Math.min(m, 1);
+        const d: Dir | '' = mag < 0.5 ? '' : Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'RIGHT' : 'LEFT') : (dy > 0 ? 'DOWN' : 'UP');
+        if (mag > 0.2) s.moved = true;
+        if (d !== s.dir) { stopRepeat(); s.dir = d; if (d) fire(d); }
+      }}
+      onPointerUp={(e) => { if (e.pointerId === st.current.id) release(e.currentTarget, true); if (e.pointerType === 'mouse') e.currentTarget.blur(); }}
+      onPointerCancel={(e) => { if (e.pointerId === st.current.id) release(e.currentTarget, false); }}
+      onClick={(e) => { if (e.detail === 0) send({ t: tap } as Action); }}
+      onContextMenu={(e) => e.preventDefault()}
+    >
+      <span className="stick-cap" ref={cap} aria-hidden />
+    </button>
+  );
+}
+
 export default function Console() {
   const [state, setState] = useState<State>(() => initialState(DEFAULTS));
   const ref = useRef(state);
   const ctx = useRef<Ctx>({ maxScroll: 0 });
   const details = useRef<HTMLDetailsElement>(null);
+  const root = useRef<HTMLElement>(null);
+  const shell = useRef<HTMLElement>(null);
   const [reduced, setReduced] = useState(false);
 
   const run = useCallback((e: Effect) => {
@@ -106,6 +174,33 @@ export default function Console() {
     return () => window.clearTimeout(id);
   }, [state.toast, send]);
 
+  /* keyboard presses visibly depress the matching hardware button */
+  const press = useCallback((a: string) => {
+    root.current?.querySelectorAll<HTMLElement>(`[data-act="${a}"]`).forEach((el) => {
+      el.setAttribute('data-pressed', '');
+      window.setTimeout(() => el.removeAttribute('data-pressed'), 140);
+    });
+  }, []);
+
+  /* parallax: the shell tilts a few degrees toward the mouse (fine pointers only) */
+  useEffect(() => {
+    if (reduced || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    let raf = 0;
+    const set = (x: number, y: number) => {
+      shell.current?.style.setProperty('--tx', x.toFixed(3));
+      shell.current?.style.setProperty('--ty', y.toFixed(3));
+    };
+    const onMove = (e: PointerEvent) => {
+      if (e.pointerType !== 'mouse') return;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => set((e.clientX / window.innerWidth - 0.5) * 2, (e.clientY / window.innerHeight - 0.5) * 2));
+    };
+    const onLeave = () => { cancelAnimationFrame(raf); set(0, 0); };
+    window.addEventListener('pointermove', onMove);
+    document.documentElement.addEventListener('pointerleave', onLeave);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('pointermove', onMove); document.documentElement.removeEventListener('pointerleave', onLeave); };
+  }, [reduced]);
+
   /* keyboard */
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -118,58 +213,81 @@ export default function Console() {
       if ((e.key === 'Enter' || e.key === ' ') && el?.closest('button,a,summary')) return;
       if (e.repeat && !a.match(/UP|DOWN|LEFT|RIGHT/)) return;
       e.preventDefault();
+      press(a);
       send({ t: a } as Action);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [send]);
+  }, [send, press]);
 
   const live = describe(state) + (state.toast ? ` ${state.toast.msg}` : '');
 
   return (
-    <main className="arcade-root">
+    <main className="arcade-root" ref={root}>
       <a className="skip" href="#text-version" onClick={() => { if (details.current) details.current.open = true; }}>Skip to accessible text version</a>
       <h1 className="sr-only">Vivek Yadav: Vivek Arcade portfolio. A handheld console interface.</h1>
       <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">{live}</div>
 
-      <section className="console" role="group" aria-label="Vivek Arcade handheld console">
+      <section className={`console${state.power ? ' is-on' : ''}`} role="group" aria-label="Vivek Arcade handheld console" ref={shell}>
         <div className="gloss" aria-hidden />
 
-        <div className="power-row">
-          <span className={`power-hint${state.power ? ' hide' : ''}`} aria-hidden>PRESS POWER</span>
-          <span className="power-lbl" aria-hidden>POWER</span>
-          <Hw action="POWER" label={state.power ? 'Power: turn display off' : 'Power: turn display on'} className={`power${state.power ? ' is-on' : ''}`} send={send} />
-        </div>
-
-        <div className="bezel">
-          <div className="bezel-top" aria-hidden><i /><span>DOT MATRIX WITH STEREO SOUND</span><i /></div>
-          <div className="lcd-wrap">
+        <div className="screen-deck">
+          <div className="power-row">
             <span className={`led${state.power ? ' on' : ''}`} aria-hidden />
-            <Lcd state={state} onMaxScroll={onMaxScroll} />
+            <span className={`power-hint${state.power ? ' hide' : ''}`} aria-hidden>PRESS POWER</span>
+            <span className="power-lbl" aria-hidden>OFF</span>
+            <Hw action="POWER" label={state.power ? 'Power: turn display off' : 'Power: turn display on'} className={`power${state.power ? ' is-on' : ''}`} send={send}>
+              <i className="pw-knob" aria-hidden />
+            </Hw>
+            <span className="power-lbl" aria-hidden>ON</span>
           </div>
-          <div className="brand" aria-hidden><span>VIVEK</span> ARCADE<em>™</em></div>
+          <div className="bezel">
+            <div className={`lcd-wrap${state.power ? ' on' : ''}`}>
+              <Lcd state={state} onMaxScroll={onMaxScroll} />
+            </div>
+            <div className="bezel-foot" aria-hidden>
+              <div className="brand"><span>VIVEK</span> ARCADE<em>™</em></div>
+              <span className="bezel-note">DOT MATRIX WITH STEREO SOUND</span>
+              <span className="grille"><i /><i /><i /><i /><i /><i /></span>
+            </div>
+          </div>
         </div>
 
-        <div className="controls">
-          <div className="dpad">
-            <Hw action="UP" label="D-pad up" className="d up" repeat send={send}><i /></Hw>
-            <Hw action="LEFT" label="D-pad left" className="d left" send={send}><i /></Hw>
-            <Hw action="RIGHT" label="D-pad right" className="d right" send={send}><i /></Hw>
-            <Hw action="DOWN" label="D-pad down" className="d down" repeat send={send}><i /></Hw>
-            <span className="d-core" aria-hidden />
+        <div className="controller left-controller" role="group" aria-label="Left controller">
+          <div className="controller-cap">
+            <span className="controller-name" aria-hidden>VIVEK / L</span>
+            <span className="indicator" aria-hidden />
           </div>
-
-          <div className="ab">
-            <div className="ab-b"><Hw action="B" label="B button: back" className="round" send={send} /><span aria-hidden>B</span></div>
-            <div className="ab-a"><Hw action="A" label="A button: select or open" className="round" send={send} /><span aria-hidden>A</span></div>
+          <Stick side="left" tap="A" label="Left analogue stick. Push to move through menus; press in to select." send={send} />
+          <div className="dpad" role="group" aria-label="D-pad">
+            <Hw action="UP" label="D-pad up" className="key up" repeat send={send}><i /></Hw>
+            <Hw action="LEFT" label="D-pad left" className="key left" send={send}><i /></Hw>
+            <span className="d-hub" aria-hidden />
+            <Hw action="RIGHT" label="D-pad right" className="key right" send={send}><i /></Hw>
+            <Hw action="DOWN" label="D-pad down" className="key down" repeat send={send}><i /></Hw>
           </div>
+          <div className="foot">
+            <Hw action="SELECT" label="Select: settings" className="pill" send={send} />
+            <span aria-hidden>SELECT</span>
+          </div>
+        </div>
 
-          <div className="ss">
-            <div><Hw action="SELECT" label="Select: settings" className="pill" send={send} /><span aria-hidden>SELECT</span></div>
+        <div className="controller right-controller" role="group" aria-label="Right controller">
+          <div className="controller-cap">
+            <span className="indicator" aria-hidden />
+            <span className="controller-name" aria-hidden>R / VIVEK</span>
+          </div>
+          <div className="abxy" role="group" aria-label="Action buttons">
+            <Hw action="Y" label="Y button: quick resume" className="cap y" send={send}><b aria-hidden>Y</b></Hw>
+            <Hw action="X" label="X button: previous page" className="cap x" send={send}><b aria-hidden>X</b></Hw>
+            <Hw action="B" label="B button: back" className="cap b" send={send}><b aria-hidden>B</b></Hw>
+            <Hw action="A" label="A button: select or open" className="cap a primary" send={send}><b aria-hidden>A</b></Hw>
+          </div>
+          <Stick side="right" tap="START" label="Right analogue stick. Push to scroll and change pages; press in for the main menu." send={send} />
+          <div className="foot two">
             <div><Hw action="START" label="Start: main menu" className="pill" send={send} /><span aria-hidden>START</span></div>
+            <div><Hw action="HOME" label="Home: return to title screen" className="home" send={send}><i aria-hidden /></Hw><span aria-hidden>HOME</span></div>
           </div>
-
-          <div className="speaker" aria-hidden><i /><i /><i /><i /><i /><i /></div>
         </div>
       </section>
 

@@ -7,7 +7,7 @@ import { Pixel } from './Pixel';
 
 type Props = { state: State; onMaxScroll: (n: number) => void };
 
-const VIS = 7;
+const VIS = 5;
 const windowStart = (cur: number, total: number) => Math.min(Math.max(0, cur - (VIS - 1)), Math.max(0, total - VIS));
 
 /* ------------------------------ chrome ------------------------------ */
@@ -40,7 +40,11 @@ function Boot() {
       </div>
       <div className="boot-sub">ARCADE</div>
       <div className="boot-bar" aria-hidden>{Array.from({ length: 12 }).map((_, i) => <i key={i} style={{ animationDelay: `${0.9 + i * 0.1}s` }} />)}</div>
-      <div className="boot-msg">LOADING PORTFOLIO...</div>
+      <div className="boot-msgs" aria-hidden>
+        <span style={{ animationDelay: '0s' }}>INITIALISING...</span>
+        <span style={{ animationDelay: '1s' }}>LOADING PORTFOLIO...</span>
+        <span className="hold" style={{ animationDelay: '2.1s' }}>READY!</span>
+      </div>
     </div>
   );
 }
@@ -48,7 +52,7 @@ function Boot() {
 function Title() {
   return (
     <div className="title">
-      <div className="title-art"><Pixel name="cart" size="17cqw" className="bob" /></div>
+      <div className="title-art"><Pixel name="cart" size="14cqw" className="bob" /></div>
       <h2 className="logo"><span>VIVEK</span><span>ARCADE</span></h2>
       <p className="press">PRESS START.</p>
       <p className="copy">© 2026 VIVEK YADAV</p>
@@ -94,6 +98,28 @@ function Menu({ f, state }: { f: Extract<Frame, { k: 'menu' }>; state: State }) 
         <div className="dlg"><p>{desc}</p></div>
       </div>
       <Footer><Key k="D-PAD">MOVE</Key><Key k="A">OPEN</Key><Key k="B">BACK</Key><Key k="SEL">SETTINGS</Key></Footer>
+    </>
+  );
+}
+
+const resumeRows = [
+  { id: 'pdf', label: 'DOWNLOAD PDF', icon: 'resume', desc: 'Open the printable resume and save it as a PDF.' },
+  { id: 'experience', label: 'EXPERIENCE', icon: 'building', desc: 'Professional experience and production impact.' },
+  { id: 'education', label: 'EDUCATION', icon: 'cap', desc: 'Degree, college and leadership.' },
+  { id: 'skills', label: 'TECHNICAL SKILLS', icon: 'chip', desc: 'Languages, backend, data, frontend and AI.' },
+  { id: 'contact', label: 'CONTACT', icon: 'mail', desc: 'Email, GitHub and LinkedIn.' },
+];
+
+function ResumeScreen({ f, state }: { f: Extract<Frame, { k: 'resume' }>; state: State }) {
+  const row = resumeRows[f.cur];
+  return (
+    <>
+      <Header state={state} />
+      <div className="body">
+        <List rows={resumeRows} cur={f.cur} />
+        <div className="dlg"><p>{row.desc}</p></div>
+      </div>
+      <Footer><Key k="D-PAD">MOVE</Key><Key k="A">{f.cur === 0 ? 'OPEN PDF' : 'VIEW'}</Key><Key k="B">BACK</Key></Footer>
     </>
   );
 }
@@ -207,7 +233,7 @@ function Detail({ f, state, onMaxScroll }: { f: Extract<Frame, { k: 'detail' }>;
       <div className="pips" aria-hidden>{item.pages.map((p, i) => <i key={p.id} className={i === f.tab ? 'on' : ''} />)}</div>
       <div className="body detail">
         <div className="vp" ref={vp}>
-          <div className="inner" ref={inner} style={{ transform: `translateY(calc(${f.scroll} * -7cqw))` }}>
+          <div className="inner tab-in" key={f.tab} ref={inner} style={{ transform: `translateY(calc(${f.scroll} * -7cqw))` }}>
             {f.tab === 0 && <Hero item={item} />}
             <Blocks blocks={page.blocks.filter((b) => b.t !== 'action')} />
           </div>
@@ -271,6 +297,7 @@ export function Lcd({ state, onMaxScroll }: Props) {
     if (phase === 'boot') { screen = <Boot />; key = `boot${state.bootId}`; }
     else if (phase === 'title') { screen = <Title />; key = 'title'; }
     else if (f.k === 'menu') { screen = <Menu f={f} state={state} />; key = 'menu'; }
+    else if (f.k === 'resume') { screen = <ResumeScreen f={f} state={state} />; key = 'resume'; }
     else if (f.k === 'section') { screen = <SectionScreen f={f} state={state} />; key = `sec-${f.sec}`; }
     else if (f.k === 'detail') { screen = <Detail f={f} state={state} onMaxScroll={onMaxScroll} />; key = `det-${f.sec}-${f.item}`; }
     else { screen = <Settings f={f} state={state} />; key = 'settings'; }
@@ -280,6 +307,7 @@ export function Lcd({ state, onMaxScroll }: Props) {
     <div className={cls} aria-hidden="true">
       {power && <div className="lcd-boot-flash" key={`flash${state.bootId}-${power}`} />}
       {power ? <div className="scr" key={key}>{screen}</div> : null}
+      {power && phase !== 'boot' && <div className="lcd-sweep" key={`sweep-${key}`} />}
       {power && state.toast && <div className="toast" key={state.toast.id}>{state.toast.msg}</div>}
       <div className="glass" />
     </div>

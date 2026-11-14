@@ -14,6 +14,7 @@ import { MENU_COUNT, RESUME_HREF, getItem, getSection, sections, type Block, typ
 
 export type Frame =
   | { k: 'menu'; cur: number }
+  | { k: 'resume'; cur: number }
   | { k: 'section'; sec: string; cur: number }
   | { k: 'detail'; sec: string; item: string; tab: number; scroll: number }
   | { k: 'settings'; cur: number };
@@ -31,7 +32,7 @@ export type State = {
 };
 
 export type Action =
-  | { t: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | 'A' | 'B' | 'START' | 'SELECT' | 'POWER' | 'RESUME' | 'BOOT_DONE' | 'CLEAR_TOAST' }
+  | { t: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | 'A' | 'B' | 'X' | 'Y' | 'START' | 'SELECT' | 'HOME' | 'POWER' | 'RESUME' | 'BOOT_DONE' | 'CLEAR_TOAST' }
   | { t: 'SET_SETTINGS'; settings: Settings };
 
 export type Effect =
@@ -43,7 +44,7 @@ export type Effect =
 export type Ctx = { maxScroll: number };
 
 export const SETTINGS_ROWS = ['SOUND', 'CRT LINES', 'BIG TEXT', 'TEXT VERSION', 'KEYBOARD'] as const;
-export const KEY_HELP = 'ARROWS MOVE · ENTER/Z = A · ESC/X = B · M = START · O = SELECT · P = POWER · R = RESUME';
+export const KEY_HELP = 'ARROWS MOVE · ENTER/Z = A · ESC/X = B · Q = X · Y = RESUME · M = START · O = SELECT · H = HOME · P = POWER · R = RESUME';
 
 export const initialState = (settings: Settings): State => ({
   power: false,
@@ -106,6 +107,10 @@ export function step(s: State, a: Action, ctx: Ctx = { maxScroll: 0 }): { state:
 
   if (a.t === 'RESUME') return { state: s, fx: [{ t: 'open', href: RESUME_HREF }, { t: 'sound', k: 'open' }] };
 
+  if (a.t === 'HOME') return { state: { ...s, phase: 'title', stack: [s.stack[0]], toast: null }, fx: [{ t: 'sound', k: 'back' }] };
+  if (a.t === 'X') return step(s, { t: 'LEFT' }, ctx);
+  if (a.t === 'Y') return step(s, { t: 'RESUME' }, ctx);
+
   if (a.t === 'START') {
     // Jump to the main menu hub, keeping the menu's own cursor.
     if (s.stack.length === 1) return { state: s, fx: [{ t: 'sound', k: 'deny' }] };
@@ -151,9 +156,20 @@ export function step(s: State, a: Action, ctx: Ctx = { maxScroll: 0 }): { state:
   if (a.t === 'A') {
     switch (f.k) {
       case 'menu': {
-        if (f.cur === MENU_COUNT) return { state: s, fx: [{ t: 'open', href: RESUME_HREF }, { t: 'sound', k: 'open' }] };
+        if (f.cur === MENU_COUNT) return { state: { ...s, stack: [...s.stack, { k: 'resume', cur: 0 }] }, fx: [{ t: 'sound', k: 'open' }] };
         const sec = sections[f.cur].id;
         return { state: { ...s, stack: [...s.stack, { k: 'section', sec, cur: 0 }] }, fx: [{ t: 'sound', k: 'open' }] };
+      }
+      case 'resume': {
+        if (f.cur === 0) return { state: s, fx: [{ t: 'open', href: RESUME_HREF }, { t: 'sound', k: 'open' }] };
+        const destinations = [
+          { sec: 'experience', cur: 0 },
+          { sec: 'intro', cur: 3 },
+          { sec: 'skills', cur: 0 },
+          { sec: 'contact', cur: 0 },
+        ];
+        const destination = destinations[f.cur - 1];
+        return { state: { ...s, stack: [...s.stack, { k: 'section', ...destination }] }, fx: [{ t: 'sound', k: 'open' }] };
       }
       case 'section': {
         const item = getSection(f.sec).items[f.cur].id;
@@ -188,6 +204,7 @@ export function crumbs(s: State): string[] {
   const out = ['HOME'];
   for (const f of s.stack) {
     if (f.k === 'menu') out.push('MENU');
+    else if (f.k === 'resume') out.push('RESUME');
     else if (f.k === 'section') out.push(getSection(f.sec).label);
     else if (f.k === 'detail') out.push(getItem(f.sec, f.item).label.toUpperCase());
     else out.push('SETTINGS');
@@ -215,6 +232,10 @@ export function describe(s: State): string {
     const r = SETTINGS_ROWS[f.cur];
     const v = r === 'SOUND' ? s.settings.sound : r === 'CRT LINES' ? s.settings.scanlines : r === 'BIG TEXT' ? s.settings.bigText : null;
     return `Settings. ${f.cur + 1} of ${SETTINGS_ROWS.length}: ${r}${v === null ? '' : v ? ', on' : ', off'}. Press A to change, B to go back.`;
+  }
+  if (f.k === 'resume') {
+    const labels = ['Download PDF', 'Experience', 'Education', 'Technical skills', 'Contact'];
+    return `Resume menu. ${f.cur + 1} of ${labels.length}: ${labels[f.cur]}. Press A to open, B to go back.`;
   }
   const it = getItem(f.sec, f.item);
   const page = it.pages[f.tab];
