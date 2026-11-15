@@ -18,6 +18,7 @@ export default async function Home() {
         ...section,
         items: section.items.map((item) => ({
           ...item,
+          image: item.id === 'about' && item.image === 'https://env.local/about-image' ? imageUrl : item.image,
           pages: item.pages.map((page) => ({
             ...page,
             blocks: page.blocks.map((block) => (

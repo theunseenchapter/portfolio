@@ -225,6 +225,7 @@
           "label": "About Me",
           "desc": "Engineer, builder, Mumbai.",
           "art": "person",
+          "image": "https://env.local/about-image",
           "pages": [
             {
               "id": "profile",
