@@ -1,4 +1,4 @@
-import { MENU_COUNT, RESUME_HREF, getItem, getSection, sections, type Block, type Page } from '@/data/arcade';
+import { MENU_COUNT, RESUME_HREF, getItem, getSection, sections, site, type Block, type Page } from '@/data/arcade';
 
 /* ------------------------------------------------------------------ */
 /* Central navigation state machine for the Vivek Arcade console.      */
@@ -162,13 +162,12 @@ export function step(s: State, a: Action, ctx: Ctx = { maxScroll: 0 }): { state:
       }
       case 'resume': {
         if (f.cur === 0) return { state: s, fx: [{ t: 'open', href: RESUME_HREF }, { t: 'sound', k: 'open' }] };
-        const destinations = [
-          { sec: 'experience', cur: 0 },
-          { sec: 'intro', cur: 3 },
-          { sec: 'skills', cur: 0 },
-          { sec: 'contact', cur: 0 },
-        ];
-        const destination = destinations[f.cur - 1];
+        // Targets are resolved by id so editing / reordering content never breaks them.
+        const targets: [string, string][] = [['experience', 'synoriq'], ['intro', 'education'], ['skills', 'lang'], ['contact', 'email']];
+        const [tsec, titem] = targets[f.cur - 1];
+        const found = sections.find((x) => x.id === tsec);
+        if (!found) return { state: s, fx: [{ t: 'sound', k: 'deny' }] };
+        const destination = { sec: tsec, cur: Math.max(0, found.items.findIndex((x) => x.id === titem)) };
         return { state: { ...s, stack: [...s.stack, { k: 'section', ...destination }] }, fx: [{ t: 'sound', k: 'open' }] };
       }
       case 'section': {
@@ -214,13 +213,13 @@ export function crumbs(s: State): string[] {
 
 export function describe(s: State): string {
   if (!s.power) return 'Console is off. Press power to turn it on.';
-  if (s.phase === 'boot') return 'Booting Vivek Arcade.';
-  if (s.phase === 'title') return 'Vivek Arcade. Press start.';
+  if (s.phase === 'boot') return `Booting ${site.brand} ${site.brandSub}.`;
+  if (s.phase === 'title') return `${site.brand} ${site.brandSub}. Press start.`;
   const f = top(s);
   const nav = 'Use up and down to move, A to open, B to go back.';
   if (f.k === 'menu') {
-    const label = f.cur === MENU_COUNT ? 'Resume, quick action' : sections[f.cur].label;
-    const desc = f.cur === MENU_COUNT ? 'Open the printable resume' : sections[f.cur].desc;
+    const label = f.cur === MENU_COUNT ? `${site.resumeLabel}, quick action` : sections[f.cur].label;
+    const desc = f.cur === MENU_COUNT ? site.resumeDesc : sections[f.cur].desc;
     return `Main menu. ${f.cur + 1} of ${MENU_COUNT + 1}: ${label}. ${desc} ${nav}`;
   }
   if (f.k === 'section') {
@@ -234,7 +233,7 @@ export function describe(s: State): string {
     return `Settings. ${f.cur + 1} of ${SETTINGS_ROWS.length}: ${r}${v === null ? '' : v ? ', on' : ', off'}. Press A to change, B to go back.`;
   }
   if (f.k === 'resume') {
-    const labels = ['Download PDF', 'Experience', 'Education', 'Technical skills', 'Contact'];
+    const labels = site.resumeRows.map((r) => r.label);
     return `Resume menu. ${f.cur + 1} of ${labels.length}: ${labels[f.cur]}. Press A to open, B to go back.`;
   }
   const it = getItem(f.sec, f.item);
@@ -252,6 +251,7 @@ export function blockText(b: Block): string {
     case 'stats': return b.items.map((x) => `${x.big} ${x.label}`).join('. ');
     case 'chips': return b.items.join(', ');
     case 'kv': return b.rows.map(([k, v]) => `${k}: ${v}`).join('. ');
+    case 'img': return b.alt ? `Image: ${b.alt}.` : '';
     case 'action': return `${b.label}. ${b.hint}.`;
   }
 }

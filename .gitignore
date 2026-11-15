@@ -1,3 +1,16 @@
-node_modules
-.next
+node_modules/
+.next/
 next-env.d.ts
+
+# secrets: never commit (only .env.example is tracked)
+.env
+.env.*
+!.env.example
+
+# admin runtime artefacts
+content/backups/
+*.tmp
+
+# GitHub-sync runtime artefacts (lock + backups live under content/backups/, already ignored above)
+*.pem
+*.key

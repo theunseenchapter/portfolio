@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useLayoutEffect, useRef, useState } from 'react';
-import { MENU_COUNT, getItem, getSection, quickResume, sections, type Block, type Item } from '@/data/arcade';
+import { MENU_COUNT, getItem, getSection, quickResume, sections, site, type Block, type Item } from '@/data/arcade';
 import { KEY_HELP, SETTINGS_ROWS, crumbs, pageOf, top, type Frame, type State } from '@/systems/nav';
 import { Pixel } from './Pixel';
 
@@ -36,9 +36,9 @@ function Boot() {
   return (
     <div className="boot">
       <div className="boot-logo" aria-hidden>
-        {'VIVEK'.split('').map((c, i) => <span key={i} style={{ animationDelay: `${0.25 + i * 0.12}s` }}>{c}</span>)}
+        {site.brand.split('').map((c, i) => <span key={i} style={{ animationDelay: `${0.25 + i * 0.12}s` }}>{c}</span>)}
       </div>
-      <div className="boot-sub">ARCADE</div>
+      <div className="boot-sub">{site.brandSub}</div>
       <div className="boot-bar" aria-hidden>{Array.from({ length: 12 }).map((_, i) => <i key={i} style={{ animationDelay: `${0.9 + i * 0.1}s` }} />)}</div>
       <div className="boot-msgs" aria-hidden>
         <span style={{ animationDelay: '0s' }}>INITIALISING...</span>
@@ -53,9 +53,9 @@ function Title() {
   return (
     <div className="title">
       <div className="title-art"><Pixel name="cart" size="14cqw" className="bob" /></div>
-      <h2 className="logo"><span>VIVEK</span><span>ARCADE</span></h2>
-      <p className="press">PRESS START.</p>
-      <p className="copy">© 2026 VIVEK YADAV</p>
+      <h2 className="logo"><span>{site.brand}</span><span>{site.brandSub}</span></h2>
+      <p className="press">{site.press}</p>
+      <p className="copy">{site.copyright}</p>
       <Footer><Key k="START">BEGIN</Key><Key k="PWR">OFF</Key></Footer>
     </div>
   );
@@ -87,9 +87,9 @@ function List({ rows, cur }: { rows: { id: string; label: string; icon: string; 
 function Menu({ f, state }: { f: Extract<Frame, { k: 'menu' }>; state: State }) {
   const rows = [
     ...sections.map((s) => ({ id: s.id, label: s.label, icon: s.icon })),
-    { id: 'resume', label: `★ ${quickResume.label}`, icon: quickResume.icon, divider: true },
+    { id: 'resume', label: `★ ${site.resumeLabel}`, icon: quickResume.icon, divider: true },
   ];
-  const desc = f.cur === MENU_COUNT ? quickResume.desc : sections[f.cur].desc;
+  const desc = f.cur === MENU_COUNT ? site.resumeDesc : sections[f.cur].desc;
   return (
     <>
       <Header state={state} />
@@ -102,15 +102,10 @@ function Menu({ f, state }: { f: Extract<Frame, { k: 'menu' }>; state: State }) 
   );
 }
 
-const resumeRows = [
-  { id: 'pdf', label: 'DOWNLOAD PDF', icon: 'resume', desc: 'Open the printable resume and save it as a PDF.' },
-  { id: 'experience', label: 'EXPERIENCE', icon: 'building', desc: 'Professional experience and production impact.' },
-  { id: 'education', label: 'EDUCATION', icon: 'cap', desc: 'Degree, college and leadership.' },
-  { id: 'skills', label: 'TECHNICAL SKILLS', icon: 'chip', desc: 'Languages, backend, data, frontend and AI.' },
-  { id: 'contact', label: 'CONTACT', icon: 'mail', desc: 'Email, GitHub and LinkedIn.' },
-];
+const RESUME_ICONS: Record<string, string> = { pdf: 'resume', experience: 'building', education: 'cap', skills: 'chip', contact: 'mail' };
 
 function ResumeScreen({ f, state }: { f: Extract<Frame, { k: 'resume' }>; state: State }) {
+  const resumeRows = site.resumeRows.map((r) => ({ ...r, icon: RESUME_ICONS[r.id] ?? 'resume' }));
   const row = resumeRows[f.cur];
   return (
     <>
@@ -170,6 +165,7 @@ function Blocks({ blocks }: { blocks: Block[] }) {
                 {b.rows.map(([k, v]) => <React.Fragment key={k}><dt>{k}</dt><dd className="vt">{v}</dd></React.Fragment>)}
               </dl>
             );
+          case 'img': return b.src ? <img key={i} className="pimg" src={b.src} alt={b.alt} loading="lazy" /> : null;
           case 'action':
             return (
               <div key={i} className="act">
@@ -187,7 +183,7 @@ function Blocks({ blocks }: { blocks: Block[] }) {
 function Hero({ item }: { item: Item }) {
   return (
     <div className="hero">
-      <div className="hero-art"><Pixel name={item.art} size="15cqw" className="bob" /></div>
+      <div className="hero-art">{item.image ? <img className="pimg hero-img" src={item.image} alt="" /> : <Pixel name={item.art} size="15cqw" className="bob" />}</div>
       <div className="hero-t">
         <h3>{item.label.toUpperCase()}</h3>
         {item.tag && <span className="tag">{item.tag}</span>}

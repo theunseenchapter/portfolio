@@ -1,10 +1,13 @@
 import { Fx } from '@/components/Fx';
-import { edu, jobs, me, projects, skills, stats } from '@/data/profile';
+import { readContent } from '@/lib/store';
 
 const delay = (i: number) => ({ transitionDelay: `${i * 80}ms` });
-const tech = Object.values(skills).flat();
 
-export default function Home() {
+export const dynamic = 'force-dynamic';
+
+export default async function Home() {
+  const { profile: { edu, jobs, me, projects, skills: skillGroups, stats } } = await readContent();
+  const skills = Object.fromEntries(skillGroups.map((g) => [g.name, g.items]));
   return (
     <>
       <Fx />
@@ -49,7 +52,7 @@ export default function Home() {
         </section>
 
         <div className="mt-20 overflow-hidden border-y py-5" style={{ borderColor: 'var(--line)' }} aria-hidden>
-          <div className="mq">{[...tech, ...tech].map((t, i) => <span key={i} className="serif mute px-6 text-3xl">{t}<span className="px-6" style={{ color: 'var(--a)' }}>✦</span></span>)}</div>
+          <div className="mq">{[...Object.values(skills).flat(), ...Object.values(skills).flat()].map((t, i) => <span key={i} className="serif mute px-6 text-3xl">{t}<span className="px-6" style={{ color: 'var(--a)' }}>✦</span></span>)}</div>
         </div>
 
         <section id="work" className="wrap sec">

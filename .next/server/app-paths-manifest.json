@@ -1,5 +1,4 @@
 {
-  "/page": "app/page.js",
-  "/icon.svg/route": "app/icon.svg/route.js",
-  "/resume/page": "app/resume/page.js"
+  "/admin/page": "app/admin/page.js",
+  "/api/admin/session/route": "app/api/admin/session/route.js"
 }

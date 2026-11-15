@@ -6,22 +6,12 @@ import { edu, jobs, me, projects, skills as _skills, stats } from './profile';
 /* Every fact here is sourced from data/profile.ts and data/world.ts.  */
 /* ------------------------------------------------------------------ */
 
-export type Block =
-  | { t: 'p'; text: string }
-  | { t: 'h'; text: string }
-  | { t: 'list'; items: string[] }
-  | { t: 'steps'; items: [string, string][] }
-  | { t: 'stats'; items: { big: string; label: string }[] }
-  | { t: 'chips'; items: string[] }
-  | { t: 'kv'; rows: [string, string][] }
-  | { t: 'action'; label: string; href?: string; copy?: string; hint: string };
+import type { Block, Content, Item, Page, Section, Site } from '@/lib/content-types';
+export type { Block, Item, Page, Section };
 
-export type Page = { id: string; label: string; blocks: Block[] };
-export type Item = { id: string; label: string; desc: string; art: string; tag?: string; pages: Page[] };
-export type Section = { id: string; label: string; desc: string; icon: string; items: Item[] };
-
-export const RESUME_HREF = '/resume';
-export const quickResume = { label: 'RESUME', desc: 'Open the printable resume now.', icon: 'resume' };
+/** Fallback copy of the printable-resume route; replaced at runtime by setContent(). */
+export const FALLBACK_RESUME_HREF = '/resume';
+const RESUME_HREF_DEFAULT = FALLBACK_RESUME_HREF;
 
 const p = (text: string): Block => ({ t: 'p', text });
 const pg = (id: string, label: string, ...blocks: Block[]): Page => ({ id, label, blocks });
@@ -289,14 +279,14 @@ const contact: Item[] = [
   {
     id: 'resume', label: 'Download Resume', art: 'resume', desc: 'Printable resume · save as PDF.',
     pages: [
-      pg('get', 'RESUME', p('Opens in a new tab. Use PRINT, then SAVE AS PDF, to download it.'), { t: 'action', label: 'OPEN RESUME', href: RESUME_HREF, hint: 'Opens in a new tab' }),
+      pg('get', 'RESUME', p('Opens in a new tab. Use PRINT, then SAVE AS PDF, to download it.'), { t: 'action', label: 'OPEN RESUME', href: FALLBACK_RESUME_HREF, hint: 'Opens in a new tab' }),
     ],
   },
 ];
 
 /* ------------------------------ SECTIONS ------------------------------ */
 
-export const sections: Section[] = [
+const defaultSections: Section[] = [
   { id: 'intro', label: 'INTRODUCTION', desc: 'Who Vivek is, and how he thinks.', icon: 'person', items: intro },
   { id: 'projects', label: 'PROJECTS', desc: 'Seven builds: data, AI and tools.', icon: 'cart', items: projectSpecs.map(projectItem) },
   { id: 'experience', label: 'EXPERIENCE', desc: 'Production engineering at Synoriq.', icon: 'case', items: exp },
@@ -305,6 +295,46 @@ export const sections: Section[] = [
   { id: 'contact', label: 'CONTACT', desc: 'Say hello or grab the resume.', icon: 'mail', items: contact },
 ];
 
-export const MENU_COUNT = sections.length; // 6 primary options; index 6 is the RESUME quick action
-export const getSection = (id: string) => sections.find((s) => s.id === id)!;
-export const getItem = (sec: string, item: string) => getSection(sec).items.find((i) => i.id === item)!;
+
+export const defaultSite: Site = {
+  brand: 'VIVEK', brandSub: 'ARCADE', press: 'PRESS START.', copyright: '\u00a9 2026 VIVEK YADAV',
+  resumeLabel: 'RESUME', resumeDesc: 'Open the printable resume now.',
+  resumeRows: [
+    { id: 'pdf', label: 'DOWNLOAD PDF', desc: 'Open the printable resume and save it as a PDF.' },
+    { id: 'experience', label: 'EXPERIENCE', desc: 'Professional experience and production impact.' },
+    { id: 'education', label: 'EDUCATION', desc: 'Degree, college and leadership.' },
+    { id: 'skills', label: 'TECHNICAL SKILLS', desc: 'Languages, backend, data, frontend and AI.' },
+    { id: 'contact', label: 'CONTACT', desc: 'Email, GitHub and LinkedIn.' },
+  ],
+};
+
+/** Seed used when content/portfolio.json does not exist yet. */
+export const defaultContent: Content = {
+  version: 1, updatedAt: null, site: defaultSite,
+  profile: {
+    me: { ...me, location: 'Mumbai, India', title: 'Software Engineer' },
+    stats: stats as [string, string][],
+    projects, jobs,
+    skills: Object.entries(_skills).map(([name, items]) => ({ name, items })),
+    edu,
+  },
+  sections: defaultSections,
+};
+
+/* ---- live content store: set once per render by <Console content=...> ---- */
+export let sections: Section[] = defaultSections;
+export let site: Site = defaultSite;
+export let RESUME_HREF: string = RESUME_HREF_DEFAULT;
+export let MENU_COUNT = sections.length; // primary options; index MENU_COUNT is the RESUME quick action
+export const quickResume = { icon: 'resume' };
+export function setContent(c: Pick<Content, 'sections' | 'site'>, resumeHref: string) {
+  // Any action pointing at the printable-resume fallback follows the uploaded PDF when one exists.
+  const swap = (b: Block): Block => (b.t === 'action' && b.href === FALLBACK_RESUME_HREF ? { ...b, href: resumeHref } : b);
+  sections = c.sections.map((s) => ({ ...s, items: s.items.map((i) => ({ ...i, pages: i.pages.map((pg) => ({ ...pg, blocks: pg.blocks.map(swap) })) })) }));
+  site = c.site; RESUME_HREF = resumeHref; MENU_COUNT = c.sections.length;
+}
+export const getSection = (id: string) => sections.find((s) => s.id === id) ?? sections[0];
+export const getItem = (sid: string, id: string) => {
+  const s = getSection(sid);
+  return s.items.find((i) => i.id === id) ?? s.items[0];
+};

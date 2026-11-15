@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { DM_Mono, Instrument_Serif, Manrope } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import "./admin.css";
+import EditButton from "@/components/admin/EditButton";
 
 const sans = Manrope({ subsets: ["latin"], variable: "--font-sans" });
 const serif = Instrument_Serif({ subsets: ["latin"], variable: "--font-serif", weight: "400", style: ["normal", "italic"] });
@@ -19,7 +21,7 @@ export const viewport: Viewport = { themeColor: "#09090b" };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${sans.variable} ${serif.variable} ${mono.variable} ${pixel.variable} ${vt.variable}`}>{children}</body>
+      <body className={`${sans.variable} ${serif.variable} ${mono.variable} ${pixel.variable} ${vt.variable}`}>{children}<EditButton /></body>
     </html>
   );
 }

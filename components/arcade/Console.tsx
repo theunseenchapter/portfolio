@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { sections } from '@/data/arcade';
+import { sections, setContent, site } from '@/data/arcade';
+import type { Content } from '@/lib/content-types';
 import { blockText, describe, initialState, step, type Action, type Ctx, type Effect, type Settings, type State } from '@/systems/nav';
 import { Lcd } from './Lcd';
 import { audio } from './sound';
@@ -116,7 +117,8 @@ function Stick({ side, label, tap, send }: { side: 'left' | 'right'; label: stri
   );
 }
 
-export default function Console() {
+export default function Console({ content, resumeHref }: { content: Pick<Content, 'sections' | 'site'>; resumeHref: string }) {
+  setContent(content, resumeHref); // idempotent: points the data layer at this render's content
   const [state, setState] = useState<State>(() => initialState(DEFAULTS));
   const ref = useRef(state);
   const ctx = useRef<Ctx>({ maxScroll: 0 });
@@ -246,7 +248,7 @@ export default function Console() {
               <Lcd state={state} onMaxScroll={onMaxScroll} />
             </div>
             <div className="bezel-foot" aria-hidden>
-              <div className="brand"><span>VIVEK</span> ARCADE<em>™</em></div>
+              <div className="brand"><span>{site.brand}</span> {site.brandSub}<em>™</em></div>
               <span className="bezel-note">DOT MATRIX WITH STEREO SOUND</span>
               <span className="grille"><i /><i /><i /><i /><i /><i /></span>
             </div>

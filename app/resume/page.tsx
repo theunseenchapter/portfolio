@@ -1,12 +1,16 @@
 import Link from 'next/link';
 import { PrintButton } from "@/components/PrintButton";
-import { edu, jobs, me, projects, skills } from '@/data/profile';
+import { readContent } from '@/lib/store';
 
 export const metadata = { title: 'Resume — Vivek Yadav' };
 
 const H = ({ children }: { children: string }) => <h2 className="mono mb-3 mt-8 border-b border-neutral-300 pb-1 !text-[11px]">{children}</h2>;
 
-export default function Resume() {
+export const dynamic = 'force-dynamic';
+
+export default async function Resume() {
+  const { profile: { edu, jobs, me, projects, skills: skillGroups } } = await readContent();
+  const skills = Object.fromEntries(skillGroups.map((g) => [g.name, g.items]));
   return (
     <div className="min-h-screen py-10 print:py-0">
       <div className="noprint wrap mb-6 flex max-w-3xl justify-between"><Link href="/" className="btn">← Back</Link><PrintButton /></div>
