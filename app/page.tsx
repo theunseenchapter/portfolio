@@ -12,5 +12,22 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const [content, resume] = await Promise.all([readContent(), resumeInfo()]);
-  return <Console content={{ sections: content.sections, site: content.site }} resumeHref={resume ? RESUME_URL : '/resume'} />;
+  const imageUrl = process.env.NEXT_PUBLIC_ABOUT_IMAGE_URL?.trim();
+  const sections = imageUrl
+    ? content.sections.map((section) => ({
+        ...section,
+        items: section.items.map((item) => ({
+          ...item,
+          pages: item.pages.map((page) => ({
+            ...page,
+            blocks: page.blocks.map((block) => (
+              block.t === 'img' && block.src === 'https://env.local/about-image'
+                ? { ...block, src: imageUrl }
+                : block
+            )),
+          })),
+        })),
+      }))
+    : content.sections;
+  return <Console content={{ sections, site: content.site }} resumeHref={resume ? RESUME_URL : '/resume'} />;
 }

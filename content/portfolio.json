@@ -236,7 +236,7 @@
                 },
                 {
                   "t": "img",
-                  "src": "https://dm3xubcg3bdra7bf.private.blob.vercel-storage.com/vivekphoto.jpeg?vercel-blob-delegation=eyJzdG9yZUlkIjoic3RvcmVfRE0zWHViQ0czYkRSYTdCZiIsIm93bmVySWQiOiJ0ZWFtXzB2aDFmUVE3a09oS1RRVFU0eTRaNzQ1MiIsInBhdGhuYW1lIjoiKiIsIm9wZXJhdGlvbnMiOlsiZ2V0IiwiaGVhZCJdLCJ2YWxpZFVudGlsIjoxNzk0NzYyMTA3MzUzLCJpYXQiOjE3OTQ3MTg5MDcwNDF9.35iByK-JjxRN_oLNI9iT4KUFWGEqpOdbbup_GK5HFU0&vercel-blob-signature=K2RaUjwuLSX-odHNmrhx17LmfkEhIqfzfQLyvoXMwR8",
+                  "src": "https://env.local/about-image",
                   "alt": "Vivek Yadav smiling beside his laptop."
                 },
                 {
