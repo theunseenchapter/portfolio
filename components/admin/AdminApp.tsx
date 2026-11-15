@@ -81,7 +81,7 @@ export default function AdminApp({ initial }: { initial: Initial }) {
   }, [dirty]);
   useEffect(() => { if (now > exp && !expired) setExpired(true); }, [now, exp, expired]);
 
-  /** Runs `job` while polling the server's live phase so the dashboard can show Saving… / Files saved / Git commit created / Pushing… */
+  /** Runs `job` while polling the server's live phase so the dashboard can show the GitHub save stages. */
   async function withProgress<T>(job: () => Promise<T>): Promise<T> {
     const poll = window.setInterval(() => { void refreshSync(); }, 600);
     try { return await job(); } finally { window.clearInterval(poll); }
@@ -178,7 +178,7 @@ export default function AdminApp({ initial }: { initial: Initial }) {
                     <button className="ab" onClick={() => setTab('RESUME')}>RESUME</button><button className="ab" onClick={downloadBackup}>DOWNLOAD JSON BACKUP</button>
                   </div>
                 </div>
-                <div className="panel"><h2>HOW IT WORKS</h2><p>Edit anything, then press <b>SAVE CHANGES</b>. Content is validated, written to <code>content/portfolio.json</code>, committed to Git with a descriptive message and pushed to GitHub automatically. The resume and images live in <code>content/</code> and are committed in the same save. If GitHub is unreachable your changes stay saved locally and you can retry.</p></div>
+                <div className="panel"><h2>HOW IT WORKS</h2><p>Edit anything, then press <b>SAVE CHANGES</b>. Content is validated and committed to GitHub automatically with a descriptive message. On Vercel, the GitHub Contents API is used directly, so the server does not need Git installed.</p></div>
               </>
             )}
 

@@ -75,6 +75,47 @@ function getConfig(): { ok: true; cfg: Config } | { ok: false; problems: string[
   return problems.length ? { ok: false, problems } : { ok: true, cfg: { token, slug, branch, author: { name, email } } };
 }
 
+type GithubFile = { sha?: string; content?: string };
+
+async function githubRequest(cfg: Config, method: string, pathname: string, body?: unknown): Promise<{ ok: boolean; status: number; data: GithubFile & { commit?: { sha?: string } } }> {
+  if (!cfg.slug) throw new Error('GITHUB_REPOSITORY must be set when Git is unavailable.');
+  const response = await fetch(`https://api.github.com/repos/${cfg.slug}${pathname}`, {
+    method,
+    headers: {
+      Authorization: `Bearer ${cfg.token}`,
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'User-Agent': 'portfolio-admin',
+      ...(body ? { 'Content-Type': 'application/json' } : {}),
+    },
+    body: body ? JSON.stringify(body) : undefined,
+    signal: AbortSignal.timeout(30_000),
+    cache: 'no-store',
+  });
+  const data = await response.json().catch(() => ({})) as GithubFile & { commit?: { sha?: string } };
+  return { ok: response.ok, status: response.status, data };
+}
+
+async function githubSaveContent(cfg: Config, content: Content, message: string): Promise<{ sha: string; message: string }> {
+  const path = '/contents/content/portfolio.json';
+  const current = await githubRequest(cfg, 'GET', `${path}?ref=${encodeURIComponent(cfg.branch)}`);
+  const body = {
+    message,
+    content: Buffer.from(JSON.stringify(content, null, 2) + '\n').toString('base64'),
+    branch: cfg.branch,
+    sha: current.ok ? current.data.sha : undefined,
+    committer: cfg.author,
+    author: cfg.author,
+  };
+  const saved = await githubRequest(cfg, 'PUT', path, body);
+  if (!saved.ok || !saved.data.commit?.sha) {
+    if (saved.status === 409) throw new Error('GitHub rejected the save because the repository changed. Refresh the admin page and try again.');
+    if (saved.status === 401 || saved.status === 403) throw new Error('GitHub rejected the token. Confirm it has Contents: Read and write permission.');
+    throw new Error(`GitHub could not save portfolio content (HTTP ${saved.status}).`);
+  }
+  return { sha: saved.data.commit.sha, message };
+}
+
 /* ------------------------------------ git ------------------------------------ */
 type GitOut = { code: number; stdout: string; stderr: string };
 const secrets = () => {
@@ -330,6 +371,31 @@ export function saveAndSync(content: Content): Promise<SaveOutcome> {
     setPhase('saving');
     const errors = await preflight(content);
     if (errors.length) return { kind: 'invalid', errors } as SaveOutcome;
+    const c = getConfig();
+    if (process.env.VERCEL === '1' || process.env.GITHUB_API_ONLY === '1') {
+      if (!c.ok) {
+        return {
+          kind: 'ok',
+          content,
+          sync: { at: new Date().toISOString(), configured: false, committed: false, pushed: false, failure: { stage: 'config', message: c.problems.join(' ') } },
+        } as SaveOutcome;
+      }
+      const next: Content = { ...content, updatedAt: new Date().toISOString() };
+      setPhase('committing');
+      const msg = await githubSaveContent(c.cfg, next, 'Update portfolio content');
+      setPhase('committed');
+      const result: SyncResult = {
+        at: new Date().toISOString(),
+        configured: true,
+        saved: true,
+        committed: true,
+        pushed: true,
+        commit: msg,
+        headSha: msg.sha,
+      };
+      S.last = result;
+      return { kind: 'ok', content: next, sync: result } as SaveOutcome;
+    }
     const saved = await writeContent(content);
     setPhase('saved');
     const result = await sync(false);
@@ -353,6 +419,14 @@ export async function gitStatus(): Promise<SyncStatus> {
     pending: S.cache.pending, unpushed: S.cache.unpushed, lastSuccess: S.persisted.lastSuccess, lastFailure: S.persisted.lastFailure, lastResult: S.last,
   };
   if (S.busy) return base; // do not touch git while a commit/push is running
+  if (process.env.VERCEL === '1' || process.env.GITHUB_API_ONLY === '1') {
+    base.branch = c.ok ? c.cfg.branch : (process.env.GITHUB_BRANCH ?? 'main');
+    if (c.ok) {
+      base.repo = c.cfg.slug;
+      base.warnings.push('GitHub API sync is enabled for this deployment.');
+    }
+    return base;
+  }
   const inside = await git(['rev-parse', '--is-inside-work-tree']);
   if (inside.code === -1) { base.configured = false; base.problems.push('Git is not installed on the server.'); return base; }
   const branch = c.ok ? c.cfg.branch : (process.env.GITHUB_BRANCH ?? 'main');

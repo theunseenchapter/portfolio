@@ -15,8 +15,8 @@ export function syncSteps(result: SyncResult | null, phase: Phase, working: bool
     const push: St = p === 'committed' ? 'run' : p === 'pushing' ? 'run' : 'todo';
     return [
       { label: files === 'run' ? 'Saving…' : 'Files saved.', st: files },
-      { label: commit === 'ok' ? 'Git commit created.' : 'Creating Git commit…', st: commit },
-      { label: push === 'run' ? 'Pushing to GitHub…' : 'GitHub push successful.', st: push },
+      { label: commit === 'ok' ? 'GitHub commit created.' : 'Creating GitHub commit…', st: commit },
+      { label: push === 'run' ? 'Saving to GitHub…' : 'GitHub save successful.', st: push },
     ];
   }
   if (!result) return [];
@@ -24,8 +24,8 @@ export function syncSteps(result: SyncResult | null, phase: Phase, working: bool
   const pushFailed = !!f && ['network', 'push', 'conflict'].includes(f.stage);
   return [
     { label: result.saved ? 'Files saved.' : 'Saving…', st: result.saved ? 'ok' : f?.stage === 'validate' ? 'bad' : 'skip' },
-    { label: result.committed ? 'Git commit created.' : f?.stage === 'commit' || f?.stage === 'repo' ? 'Git commit failed.' : 'No new commit needed.', st: result.committed ? 'ok' : f?.stage === 'commit' || f?.stage === 'repo' ? 'bad' : f?.stage === 'config' ? 'todo' : 'skip' },
-    { label: result.pushed ? 'GitHub push successful.' : pushFailed ? 'Push failed.' : result.nothing ? 'Nothing new to push.' : f?.stage === 'config' ? 'GitHub sync not configured.' : 'Push not attempted.', st: result.pushed ? 'ok' : pushFailed ? 'bad' : result.nothing ? 'skip' : 'todo' },
+    { label: result.committed ? 'GitHub commit created.' : f?.stage === 'commit' || f?.stage === 'repo' ? 'GitHub commit failed.' : 'No new commit needed.', st: result.committed ? 'ok' : f?.stage === 'commit' || f?.stage === 'repo' ? 'bad' : f?.stage === 'config' ? 'todo' : 'skip' },
+    { label: result.pushed ? 'GitHub save successful.' : pushFailed ? 'GitHub save failed.' : result.nothing ? 'Nothing new to save.' : f?.stage === 'config' ? 'GitHub sync not configured.' : 'Save not attempted.', st: result.pushed ? 'ok' : pushFailed ? 'bad' : result.nothing ? 'skip' : 'todo' },
   ];
 }
 
@@ -36,15 +36,15 @@ export function syncHeadline(status: SyncStatus | null, result: SyncResult | nul
   if (f) {
     if (f.stage === 'config') return { text: 'Saved locally. GitHub sync is not configured.', tone: 'warn' };
     if (f.stage === 'validate') return { text: 'Not saved: fix the problems below.', tone: 'bad' };
-    if (f.stage === 'commit' || f.stage === 'repo') return { text: 'Files saved, but the Git commit failed.', tone: 'bad' };
-    return { text: 'Push failed. Your changes are saved locally.', tone: 'bad' };
+    if (f.stage === 'commit' || f.stage === 'repo') return { text: 'Files saved, but the GitHub commit failed.', tone: 'bad' };
+    return { text: 'GitHub save failed. Your changes may not be published.', tone: 'bad' };
   }
   if (result?.nothing) return { text: 'Everything is already on GitHub.', tone: 'ok' };
   if (!status) return { text: 'Checking GitHub sync…', tone: 'busy' };
   if (!status.configured) return { text: 'GitHub sync is not configured. Edits are saved locally only.', tone: 'warn' };
   const waiting = status.pending > 0 || (status.unpushed ?? 0) > 0;
-  if (waiting && status.lastFailure) return { text: 'Push failed. Your changes are saved locally.', tone: 'bad' };
-  if (waiting) return { text: 'Saved locally. Waiting to be pushed to GitHub.', tone: 'warn' };
+  if (waiting && status.lastFailure) return { text: 'GitHub save failed. Changes are waiting to be retried.', tone: 'bad' };
+  if (waiting) return { text: 'Changes are waiting to be saved to GitHub.', tone: 'warn' };
   return { text: 'In sync with GitHub.', tone: 'ok' };
 }
 
