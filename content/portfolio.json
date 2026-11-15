@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": null,
+  "updatedAt": "2026-11-15T04:32:06.464Z",
   "site": {
     "brand": "VIVEK",
     "brandSub": "ARCADE",
@@ -39,9 +39,9 @@
   "profile": {
     "me": {
       "name": "Vivek Yadav",
-      "email": "vivek.yadav03@gmail.com",
+      "email": "viveky1815@gmail.com",
       "github": "https://github.com/theunseenchapter",
-      "linkedin": "https://www.linkedin.com/in/vivekyadav03",
+      "linkedin": "https://www.linkedin.com/in/vivek-",
       "location": "Mumbai, India",
       "title": "Software Engineer"
     },
@@ -223,8 +223,8 @@
         {
           "id": "about",
           "label": "About Me",
-          "art": "person",
           "desc": "Engineer, builder, Mumbai.",
+          "art": "person",
           "pages": [
             {
               "id": "profile",
@@ -307,8 +307,8 @@
         {
           "id": "journey",
           "label": "My Journey",
-          "art": "cap",
           "desc": "From campus to production.",
+          "art": "cap",
           "pages": [
             {
               "id": "timeline",
@@ -348,8 +348,8 @@
         {
           "id": "philosophy",
           "label": "Engineering Philosophy",
-          "art": "chip",
           "desc": "Principles behind the work.",
+          "art": "chip",
           "pages": [
             {
               "id": "principles",
@@ -397,8 +397,8 @@
         {
           "id": "education",
           "label": "Education",
-          "art": "cap",
           "desc": "B.E. Computer Engineering.",
+          "art": "cap",
           "pages": [
             {
               "id": "degree",
@@ -450,9 +450,8 @@
         {
           "id": "datascope",
           "label": "DataScope",
-          "art": "db",
-          "tag": "DATABASE INTELLIGENCE",
           "desc": "Database intelligence · Python, FastAPI, PostgreSQL",
+          "art": "db",
           "pages": [
             {
               "id": "overview",
@@ -581,19 +580,19 @@
                 {
                   "t": "action",
                   "label": "OPEN GITHUB",
-                  "href": "https://github.com/theunseenchapter",
-                  "hint": "github.com/theunseenchapter"
+                  "hint": "github.com/theunseenchapter",
+                  "href": "https://github.com/theunseenchapter"
                 }
               ]
             }
-          ]
+          ],
+          "tag": "DATABASE INTELLIGENCE"
         },
         {
           "id": "medisource",
           "label": "MediSource",
-          "art": "pill",
-          "tag": "IN DEVELOPMENT",
           "desc": "Agentic AI · Agentic AI, RAG, NLP",
+          "art": "pill",
           "pages": [
             {
               "id": "overview",
@@ -715,19 +714,19 @@
                 {
                   "t": "action",
                   "label": "OPEN GITHUB",
-                  "href": "https://github.com/theunseenchapter",
-                  "hint": "github.com/theunseenchapter"
+                  "hint": "github.com/theunseenchapter",
+                  "href": "https://github.com/theunseenchapter"
                 }
               ]
             }
-          ]
+          ],
+          "tag": "IN DEVELOPMENT"
         },
         {
           "id": "home-alchemy",
           "label": "Home Alchemy",
-          "art": "house",
-          "tag": "GENERATIVE DESIGN",
           "desc": "Generative design · Next.js, PyTorch, Stable Diffusion",
+          "art": "house",
           "pages": [
             {
               "id": "overview",
@@ -850,19 +849,19 @@
                 {
                   "t": "action",
                   "label": "OPEN GITHUB",
-                  "href": "https://github.com/theunseenchapter",
-                  "hint": "github.com/theunseenchapter"
+                  "hint": "github.com/theunseenchapter",
+                  "href": "https://github.com/theunseenchapter"
                 }
               ]
             }
-          ]
+          ],
+          "tag": "GENERATIVE DESIGN"
         },
         {
           "id": "clipbridge",
           "label": "ClipBridge",
-          "art": "clip",
-          "tag": "INDEPENDENT PRODUCT",
           "desc": "Utility · Cross-device, Desktop",
+          "art": "clip",
           "pages": [
             {
               "id": "overview",
@@ -974,19 +973,19 @@
                 {
                   "t": "action",
                   "label": "OPEN GITHUB",
-                  "href": "https://github.com/theunseenchapter",
-                  "hint": "github.com/theunseenchapter"
+                  "hint": "github.com/theunseenchapter",
+                  "href": "https://github.com/theunseenchapter"
                 }
               ]
             }
-          ]
+          ],
+          "tag": "INDEPENDENT PRODUCT"
         },
         {
           "id": "tangerine",
           "label": "Tangerine",
-          "art": "orange",
-          "tag": "WINDOWS DESKTOP",
           "desc": "Windows desktop · Qt, PySide6, Win32/OLE",
+          "art": "orange",
           "pages": [
             {
               "id": "overview",
@@ -1099,19 +1098,19 @@
                 {
                   "t": "action",
                   "label": "OPEN GITHUB",
-                  "href": "https://github.com/theunseenchapter",
-                  "hint": "github.com/theunseenchapter"
+                  "hint": "github.com/theunseenchapter",
+                  "href": "https://github.com/theunseenchapter"
                 }
               ]
             }
-          ]
+          ],
+          "tag": "WINDOWS DESKTOP"
         },
         {
           "id": "contextword",
           "label": "ContextWord",
-          "art": "book",
-          "tag": "BROWSER TOOLING",
           "desc": "Browser extension · TypeScript, Chromium APIs",
+          "art": "book",
           "pages": [
             {
               "id": "overview",
@@ -1228,19 +1227,19 @@
                 {
                   "t": "action",
                   "label": "OPEN GITHUB",
-                  "href": "https://github.com/theunseenchapter",
-                  "hint": "github.com/theunseenchapter"
+                  "hint": "github.com/theunseenchapter",
+                  "href": "https://github.com/theunseenchapter"
                 }
               ]
             }
-          ]
+          ],
+          "tag": "BROWSER TOOLING"
         },
         {
           "id": "excel",
           "label": "Excel Validation Dashboard",
-          "art": "grid",
-          "tag": "PRODUCT ENGINEERING",
           "desc": "Data quality · React, TypeScript, Material UI",
+          "art": "grid",
           "pages": [
             {
               "id": "overview",
@@ -1357,12 +1356,13 @@
                 {
                   "t": "action",
                   "label": "OPEN GITHUB",
-                  "href": "https://github.com/theunseenchapter",
-                  "hint": "github.com/theunseenchapter"
+                  "hint": "github.com/theunseenchapter",
+                  "href": "https://github.com/theunseenchapter"
                 }
               ]
             }
-          ]
+          ],
+          "tag": "PRODUCT ENGINEERING"
         }
       ]
     },
@@ -1375,9 +1375,8 @@
         {
           "id": "synoriq",
           "label": "Synoriq",
-          "art": "building",
-          "tag": "MAY 2026 — PRESENT",
           "desc": "Associate Software Engineer I.",
+          "art": "building",
           "pages": [
             {
               "id": "role",
@@ -1454,14 +1453,14 @@
                 }
               ]
             }
-          ]
+          ],
+          "tag": "MAY 2026 — PRESENT"
         },
         {
           "id": "ifuture",
           "label": "IFuture Technologies",
-          "art": "cloud",
-          "tag": "MAY — JUN 2024",
           "desc": "Cloud Computing Intern.",
+          "art": "cloud",
           "pages": [
             {
               "id": "role",
@@ -1512,13 +1511,14 @@
                 }
               ]
             }
-          ]
+          ],
+          "tag": "MAY — JUN 2024"
         },
         {
           "id": "pro-achievements",
           "label": "Professional Achievements",
-          "art": "trophy",
           "desc": "Numbers from production.",
+          "art": "trophy",
           "pages": [
             {
               "id": "impact",
@@ -1566,8 +1566,8 @@
         {
           "id": "lang",
           "label": "Programming Languages",
-          "art": "chip",
           "desc": "Java · Python · SQL · TS",
+          "art": "chip",
           "pages": [
             {
               "id": "kit",
@@ -1604,8 +1604,8 @@
         {
           "id": "backend",
           "label": "Backend Engineering",
-          "art": "chip",
           "desc": "Services, ETL, APIs",
+          "art": "chip",
           "pages": [
             {
               "id": "kit",
@@ -1643,8 +1643,8 @@
         {
           "id": "ai",
           "label": "AI / ML",
-          "art": "chip",
           "desc": "Agents, RAG, diffusion",
+          "art": "chip",
           "pages": [
             {
               "id": "kit",
@@ -1680,8 +1680,8 @@
         {
           "id": "db",
           "label": "Databases",
-          "art": "db",
           "desc": "PostgreSQL & SQL tuning",
+          "art": "db",
           "pages": [
             {
               "id": "kit",
@@ -1716,8 +1716,8 @@
         {
           "id": "frontend",
           "label": "Frontend",
-          "art": "grid",
           "desc": "React, Next.js, TypeScript",
+          "art": "grid",
           "pages": [
             {
               "id": "kit",
@@ -1755,8 +1755,8 @@
         {
           "id": "tools",
           "label": "Tools and Technologies",
-          "art": "clip",
           "desc": "Desktop, browser, cloud",
+          "art": "clip",
           "pages": [
             {
               "id": "kit",
@@ -1803,8 +1803,8 @@
         {
           "id": "perf",
           "label": "Performance Optimization",
-          "art": "trophy",
           "desc": "2 min → 20 sec.",
+          "art": "trophy",
           "pages": [
             {
               "id": "headline",
@@ -1843,8 +1843,8 @@
         {
           "id": "dbeng",
           "label": "Database Engineering",
-          "art": "db",
           "desc": "680+ tables mapped.",
+          "art": "db",
           "pages": [
             {
               "id": "headline",
@@ -1884,8 +1884,8 @@
         {
           "id": "aiopt",
           "label": "AI Optimization",
-          "art": "pill",
           "desc": "60% faster inference.",
+          "art": "pill",
           "pages": [
             {
               "id": "headline",
@@ -1920,8 +1920,8 @@
         {
           "id": "product",
           "label": "Product Development",
-          "art": "house",
           "desc": "7 products built.",
+          "art": "house",
           "pages": [
             {
               "id": "headline",
@@ -1969,8 +1969,8 @@
         {
           "id": "email",
           "label": "Email",
-          "art": "mail",
           "desc": "vivek.yadav03@gmail.com",
+          "art": "mail",
           "pages": [
             {
               "id": "send",
@@ -1983,8 +1983,8 @@
                 {
                   "t": "action",
                   "label": "WRITE EMAIL",
-                  "href": "mailto:vivek.yadav03@gmail.com",
-                  "hint": "Opens your mail app"
+                  "hint": "Opens your mail app",
+                  "href": "mailto:vivek.yadav03@gmail.com"
                 }
               ]
             },
@@ -1999,8 +1999,8 @@
                 {
                   "t": "action",
                   "label": "COPY ADDRESS",
-                  "copy": "vivek.yadav03@gmail.com",
-                  "hint": "vivek.yadav03@gmail.com"
+                  "hint": "vivek.yadav03@gmail.com",
+                  "copy": "vivek.yadav03@gmail.com"
                 }
               ]
             }
@@ -2009,8 +2009,8 @@
         {
           "id": "linkedin",
           "label": "LinkedIn",
-          "art": "person",
           "desc": "linkedin.com/in/vivekyadav03",
+          "art": "person",
           "pages": [
             {
               "id": "open",
@@ -2023,8 +2023,8 @@
                 {
                   "t": "action",
                   "label": "OPEN LINKEDIN",
-                  "href": "https://www.linkedin.com/in/vivekyadav03",
-                  "hint": "Opens in a new tab"
+                  "hint": "Opens in a new tab",
+                  "href": "https://www.linkedin.com/in/vivekyadav03"
                 }
               ]
             }
@@ -2033,8 +2033,8 @@
         {
           "id": "github",
           "label": "GitHub",
-          "art": "clip",
           "desc": "github.com/theunseenchapter",
+          "art": "clip",
           "pages": [
             {
               "id": "open",
@@ -2047,8 +2047,8 @@
                 {
                   "t": "action",
                   "label": "OPEN GITHUB",
-                  "href": "https://github.com/theunseenchapter",
-                  "hint": "Opens in a new tab"
+                  "hint": "Opens in a new tab",
+                  "href": "https://github.com/theunseenchapter"
                 }
               ]
             }
@@ -2057,8 +2057,8 @@
         {
           "id": "resume",
           "label": "Download Resume",
-          "art": "resume",
           "desc": "Printable resume · save as PDF.",
+          "art": "resume",
           "pages": [
             {
               "id": "get",
@@ -2071,8 +2071,8 @@
                 {
                   "t": "action",
                   "label": "OPEN RESUME",
-                  "href": "/resume",
-                  "hint": "Opens in a new tab"
+                  "hint": "Opens in a new tab",
+                  "href": "/resume"
                 }
               ]
             }
