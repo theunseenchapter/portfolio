@@ -1,0 +1,2084 @@
+{
+  "version": 1,
+  "updatedAt": null,
+  "site": {
+    "brand": "VIVEK",
+    "brandSub": "ARCADE",
+    "press": "PRESS START.",
+    "copyright": "© 2026 VIVEK YADAV",
+    "resumeLabel": "RESUME",
+    "resumeDesc": "Open the printable resume now.",
+    "resumeRows": [
+      {
+        "id": "pdf",
+        "label": "DOWNLOAD PDF",
+        "desc": "Open the printable resume and save it as a PDF."
+      },
+      {
+        "id": "experience",
+        "label": "EXPERIENCE",
+        "desc": "Professional experience and production impact."
+      },
+      {
+        "id": "education",
+        "label": "EDUCATION",
+        "desc": "Degree, college and leadership."
+      },
+      {
+        "id": "skills",
+        "label": "TECHNICAL SKILLS",
+        "desc": "Languages, backend, data, frontend and AI."
+      },
+      {
+        "id": "contact",
+        "label": "CONTACT",
+        "desc": "Email, GitHub and LinkedIn."
+      }
+    ]
+  },
+  "profile": {
+    "me": {
+      "name": "Vivek Yadav",
+      "email": "vivek.yadav03@gmail.com",
+      "github": "https://github.com/theunseenchapter",
+      "linkedin": "https://www.linkedin.com/in/vivekyadav03",
+      "location": "Mumbai, India",
+      "title": "Software Engineer"
+    },
+    "stats": [
+      [
+        "2m → 20s",
+        "report execution time"
+      ],
+      [
+        "680+",
+        "tables mapped by DataScope"
+      ],
+      [
+        "60%",
+        "faster model inference"
+      ],
+      [
+        "₹3,000+ cr",
+        "client AUM supported"
+      ]
+    ],
+    "projects": [
+      {
+        "t": "DataScope",
+        "k": "Database intelligence",
+        "d": "A guided workspace for exploring complex schemas, validating SQL and catching unsafe queries before they reach production.",
+        "s": [
+          "Python",
+          "FastAPI",
+          "PostgreSQL",
+          "React"
+        ],
+        "m": "680+",
+        "ml": "tables · 13K+ columns",
+        "wide": true
+      },
+      {
+        "t": "MediSource",
+        "k": "Agentic AI",
+        "d": "A multi-agent medicine-ordering platform that analyses prescriptions and recommends orders through APIs.",
+        "s": [
+          "Agentic AI",
+          "RAG",
+          "NLP",
+          "APIs"
+        ],
+        "st": "In development"
+      },
+      {
+        "t": "Home Alchemy",
+        "k": "Generative design",
+        "d": "AI interior design that turns a room brief into visual direction using fine-tuned diffusion models.",
+        "s": [
+          "Next.js",
+          "PyTorch",
+          "Stable Diffusion"
+        ],
+        "m": "60%",
+        "ml": "faster inference"
+      },
+      {
+        "t": "Excel Validation Dashboard",
+        "k": "Data quality",
+        "d": "Upload workbooks, validate them against backend templates and surface data-quality issues instantly.",
+        "s": [
+          "React",
+          "TypeScript",
+          "Material UI",
+          "React Query"
+        ],
+        "wide": true
+      },
+      {
+        "t": "ClipBridge",
+        "k": "Utility",
+        "d": "Dependable, frictionless clipboard transfer between devices.",
+        "s": [
+          "Cross-device",
+          "Desktop"
+        ]
+      },
+      {
+        "t": "Tangerine",
+        "k": "Windows desktop",
+        "d": "Contextual file conversion with deep Windows integration.",
+        "s": [
+          "Qt",
+          "PySide6",
+          "Win32/OLE"
+        ]
+      },
+      {
+        "t": "ContextWord",
+        "k": "Browser extension",
+        "d": "A privacy-first offline dictionary that understands the sentence around a word.",
+        "s": [
+          "TypeScript",
+          "Chromium APIs"
+        ]
+      }
+    ],
+    "jobs": [
+      {
+        "when": "May 2026 — Present",
+        "org": "Synoriq",
+        "role": "Associate Software Engineer I",
+        "pts": [
+          "Build and optimise a loan management system for an NBFC client — SQL, data migration, Java/Spring Boot and Python services, React/TypeScript frontends.",
+          "Cut report execution time from 2 minutes to 20 seconds.",
+          "Ship ETL, migration and reconciliation workflows for clients managing ₹3,000+ crore and ₹500+ crore AUM.",
+          "Investigate production issues and contribute to CI/CD releases."
+        ]
+      },
+      {
+        "when": "May — Jun 2024",
+        "org": "iFuture Technologies",
+        "role": "Cloud Computing Intern",
+        "pts": [
+          "Tested cloud applications, reproduced API issues, wrote automation scripts and worked in Agile sprints."
+        ]
+      }
+    ],
+    "skills": [
+      {
+        "name": "Backend",
+        "items": [
+          "Java",
+          "Spring Boot",
+          "Python",
+          "FastAPI",
+          "REST APIs"
+        ]
+      },
+      {
+        "name": "Data",
+        "items": [
+          "SQL",
+          "PostgreSQL",
+          "Query optimisation",
+          "ETL",
+          "Data migration"
+        ]
+      },
+      {
+        "name": "Frontend",
+        "items": [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Tailwind",
+          "Material UI"
+        ]
+      },
+      {
+        "name": "AI",
+        "items": [
+          "Agentic AI",
+          "RAG",
+          "NLP",
+          "PyTorch",
+          "Stable Diffusion"
+        ]
+      }
+    ],
+    "edu": {
+      "deg": "B.E. Computer Engineering",
+      "school": "Lokmanya Tilak College of Engineering, Navi Mumbai",
+      "meta": "CGPA 8.13 / 10 · Graduated June 2026",
+      "extra": "Vice President, Computer Engineering Student Association"
+    }
+  },
+  "sections": [
+    {
+      "id": "intro",
+      "label": "INTRODUCTION",
+      "desc": "Who Vivek is, and how he thinks.",
+      "icon": "person",
+      "items": [
+        {
+          "id": "about",
+          "label": "About Me",
+          "art": "person",
+          "desc": "Engineer, builder, Mumbai.",
+          "pages": [
+            {
+              "id": "profile",
+              "label": "PROFILE",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Software engineer building reliable backend systems, data tooling and AI products."
+                },
+                {
+                  "t": "kv",
+                  "rows": [
+                    [
+                      "NAME",
+                      "VIVEK YADAV"
+                    ],
+                    [
+                      "ROLE",
+                      "ASSOCIATE SOFTWARE ENGINEER I"
+                    ],
+                    [
+                      "AT",
+                      "SYNORIQ"
+                    ],
+                    [
+                      "BASE",
+                      "MUMBAI, INDIA"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "focus",
+              "label": "FOCUS",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "WHAT I BUILD"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Production lending systems for an NBFC client.",
+                    "Data tooling: schemas, SQL safety, validation.",
+                    "AI products: agents, RAG, generative design."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "stats",
+              "label": "STATS",
+              "blocks": [
+                {
+                  "t": "stats",
+                  "items": [
+                    {
+                      "big": "2m → 20s",
+                      "label": "report execution time"
+                    },
+                    {
+                      "big": "680+",
+                      "label": "tables mapped by DataScope"
+                    },
+                    {
+                      "big": "60%",
+                      "label": "faster model inference"
+                    },
+                    {
+                      "big": "₹3,000+ cr",
+                      "label": "client AUM supported"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "journey",
+          "label": "My Journey",
+          "art": "cap",
+          "desc": "From campus to production.",
+          "pages": [
+            {
+              "id": "timeline",
+              "label": "TIMELINE",
+              "blocks": [
+                {
+                  "t": "steps",
+                  "items": [
+                    [
+                      "MAY–JUN 2024",
+                      "Cloud Computing Intern at iFuture Technologies."
+                    ],
+                    [
+                      "MAY 2026",
+                      "Joined Synoriq as Associate Software Engineer I."
+                    ],
+                    [
+                      "JUN 2026",
+                      "Graduated: B.E. Computer Engineering, CGPA 8.13 / 10."
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "now",
+              "label": "NOW",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Shipping a loan management system for an NBFC client while building independent products on the side: DataScope, MediSource, Home Alchemy and more."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "philosophy",
+          "label": "Engineering Philosophy",
+          "art": "chip",
+          "desc": "Principles behind the work.",
+          "pages": [
+            {
+              "id": "principles",
+              "label": "PRINCIPLES",
+              "blocks": [
+                {
+                  "t": "steps",
+                  "items": [
+                    [
+                      "CORRECT FIRST",
+                      "Production systems must be right before they are fast."
+                    ],
+                    [
+                      "LEGIBLE DATA",
+                      "Make the schema understandable before building on it."
+                    ],
+                    [
+                      "GUARD EARLY",
+                      "Catch unsafe queries and bad inputs before production."
+                    ],
+                    [
+                      "MEASURE IT",
+                      "Prove a win with a number: 2 min to 20 sec."
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "practice",
+              "label": "IN PRACTICE",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "DataScope validates SQL against the real schema.",
+                    "Excel Validation Dashboard flags bad workbooks up front.",
+                    "Synoriq reports: 2 minutes cut to 20 seconds."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "education",
+          "label": "Education",
+          "art": "cap",
+          "desc": "B.E. Computer Engineering.",
+          "pages": [
+            {
+              "id": "degree",
+              "label": "DEGREE",
+              "blocks": [
+                {
+                  "t": "kv",
+                  "rows": [
+                    [
+                      "DEGREE",
+                      "B.E. COMPUTER ENGINEERING"
+                    ],
+                    [
+                      "COLLEGE",
+                      "LOKMANYA TILAK COLLEGE OF ENGINEERING, NAVI MUMBAI"
+                    ],
+                    [
+                      "CGPA",
+                      "8.13 / 10"
+                    ],
+                    [
+                      "GRADUATED",
+                      "JUNE 2026"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "lead",
+              "label": "LEADERSHIP",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Vice President, Computer Engineering Student Association."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "label": "PROJECTS",
+      "desc": "Seven builds: data, AI and tools.",
+      "icon": "cart",
+      "items": [
+        {
+          "id": "datascope",
+          "label": "DataScope",
+          "art": "db",
+          "tag": "DATABASE INTELLIGENCE",
+          "desc": "Database intelligence · Python, FastAPI, PostgreSQL",
+          "pages": [
+            {
+              "id": "overview",
+              "label": "OVERVIEW",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "A guided workspace for exploring complex schemas, validating SQL and catching unsafe queries before they reach production."
+                }
+              ]
+            },
+            {
+              "id": "problem",
+              "label": "PROBLEM",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "PROBLEM SOLVED"
+                },
+                {
+                  "t": "p",
+                  "text": "Large relational databases are hard to understand, and unsafe queries are easy to write. DataScope makes the schema legible before anyone builds on it."
+                }
+              ]
+            },
+            {
+              "id": "arch",
+              "label": "ARCHITECTURE",
+              "blocks": [
+                {
+                  "t": "steps",
+                  "items": [
+                    [
+                      "Ingest",
+                      "Reads PostgreSQL catalogs: 680+ tables, 13K+ columns."
+                    ],
+                    [
+                      "Map",
+                      "Builds relationships between tables and columns."
+                    ],
+                    [
+                      "Validate",
+                      "Checks SQL against the real schema."
+                    ],
+                    [
+                      "Guard",
+                      "SQL safety checks block risky statements."
+                    ],
+                    [
+                      "Workspace",
+                      "React UI over a FastAPI backend."
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "decisions",
+              "label": "DECISIONS",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "ENGINEERING DECISIONS"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Read the schema straight from PostgreSQL catalogs: deterministic, not guessed.",
+                    "Validate SQL against the real schema before anything runs.",
+                    "Block risky statements with explicit safety checks.",
+                    "FastAPI backend + React workspace keep logic and UI separate."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tech",
+              "label": "TECHNOLOGIES",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "Python",
+                    "FastAPI",
+                    "PostgreSQL",
+                    "React"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "metrics",
+              "label": "METRICS",
+              "blocks": [
+                {
+                  "t": "stats",
+                  "items": [
+                    {
+                      "big": "680+",
+                      "label": "tables · 13K+ columns"
+                    }
+                  ]
+                },
+                {
+                  "t": "h",
+                  "text": "VERIFIED OUTCOMES"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "680+ tables explored",
+                    "13K+ columns mapped",
+                    "Query validation and SQL safety checks"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "github",
+              "label": "GITHUB",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Source and profile on GitHub. Opens in a new tab; your console session stays here."
+                },
+                {
+                  "t": "action",
+                  "label": "OPEN GITHUB",
+                  "href": "https://github.com/theunseenchapter",
+                  "hint": "github.com/theunseenchapter"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "medisource",
+          "label": "MediSource",
+          "art": "pill",
+          "tag": "IN DEVELOPMENT",
+          "desc": "Agentic AI · Agentic AI, RAG, NLP",
+          "pages": [
+            {
+              "id": "overview",
+              "label": "OVERVIEW",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "A multi-agent medicine-ordering platform that analyses prescriptions and recommends orders through APIs."
+                }
+              ]
+            },
+            {
+              "id": "problem",
+              "label": "PROBLEM",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "PROBLEM SOLVED"
+                },
+                {
+                  "t": "p",
+                  "text": "Turning a prescription into the right order automatically, with agents that analyse, retrieve and recommend."
+                }
+              ]
+            },
+            {
+              "id": "arch",
+              "label": "ARCHITECTURE",
+              "blocks": [
+                {
+                  "t": "steps",
+                  "items": [
+                    [
+                      "Intake",
+                      "Prescription analysis with NLP."
+                    ],
+                    [
+                      "Retrieve",
+                      "RAG over medicine knowledge."
+                    ],
+                    [
+                      "Agents",
+                      "Multiple cooperating agents."
+                    ],
+                    [
+                      "Recommend",
+                      "Automated recommendations."
+                    ],
+                    [
+                      "Order",
+                      "Order-management APIs."
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "decisions",
+              "label": "DECISIONS",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "ENGINEERING DECISIONS"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Split the job across cooperating agents instead of one monolith.",
+                    "Ground recommendations with RAG over medicine knowledge.",
+                    "Place orders through APIs, not manual steps."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tech",
+              "label": "TECHNOLOGIES",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "Agentic AI",
+                    "RAG",
+                    "NLP",
+                    "APIs"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "metrics",
+              "label": "METRICS",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "No quantified metric has been published for this project yet."
+                },
+                {
+                  "t": "h",
+                  "text": "VERIFIED OUTCOMES"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Multi-agent medicine-ordering platform",
+                    "Prescription analysis and automated recommendations"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "github",
+              "label": "GITHUB",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Source and profile on GitHub. Opens in a new tab; your console session stays here."
+                },
+                {
+                  "t": "action",
+                  "label": "OPEN GITHUB",
+                  "href": "https://github.com/theunseenchapter",
+                  "hint": "github.com/theunseenchapter"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "home-alchemy",
+          "label": "Home Alchemy",
+          "art": "house",
+          "tag": "GENERATIVE DESIGN",
+          "desc": "Generative design · Next.js, PyTorch, Stable Diffusion",
+          "pages": [
+            {
+              "id": "overview",
+              "label": "OVERVIEW",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "AI interior design that turns a room brief into visual direction using fine-tuned diffusion models."
+                }
+              ]
+            },
+            {
+              "id": "problem",
+              "label": "PROBLEM",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "PROBLEM SOLVED"
+                },
+                {
+                  "t": "p",
+                  "text": "Helping people see an interior before they commit to it, quickly enough to iterate."
+                }
+              ]
+            },
+            {
+              "id": "arch",
+              "label": "ARCHITECTURE",
+              "blocks": [
+                {
+                  "t": "steps",
+                  "items": [
+                    [
+                      "Brief",
+                      "Next.js product experience captures the room brief."
+                    ],
+                    [
+                      "Generate",
+                      "Fine-tuned Stable Diffusion models on PyTorch."
+                    ],
+                    [
+                      "Optimise",
+                      "Inference time reduced by 60%."
+                    ],
+                    [
+                      "Direction",
+                      "Visual design direction returned to the user."
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "decisions",
+              "label": "DECISIONS",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "ENGINEERING DECISIONS"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Fine-tune Stable Diffusion for interiors rather than use a generic model.",
+                    "Optimise inference so users can iterate quickly: 60% faster.",
+                    "Capture a structured room brief in the Next.js front end."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tech",
+              "label": "TECHNOLOGIES",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "Next.js",
+                    "Python",
+                    "PyTorch",
+                    "Stable Diffusion"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "metrics",
+              "label": "METRICS",
+              "blocks": [
+                {
+                  "t": "stats",
+                  "items": [
+                    {
+                      "big": "60%",
+                      "label": "faster inference"
+                    }
+                  ]
+                },
+                {
+                  "t": "h",
+                  "text": "VERIFIED OUTCOMES"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "60% reduction in inference time",
+                    "AI interior design application"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "github",
+              "label": "GITHUB",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Source and profile on GitHub. Opens in a new tab; your console session stays here."
+                },
+                {
+                  "t": "action",
+                  "label": "OPEN GITHUB",
+                  "href": "https://github.com/theunseenchapter",
+                  "hint": "github.com/theunseenchapter"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "clipbridge",
+          "label": "ClipBridge",
+          "art": "clip",
+          "tag": "INDEPENDENT PRODUCT",
+          "desc": "Utility · Cross-device, Desktop",
+          "pages": [
+            {
+              "id": "overview",
+              "label": "OVERVIEW",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Dependable, frictionless clipboard transfer between devices."
+                }
+              ]
+            },
+            {
+              "id": "problem",
+              "label": "PROBLEM",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "PROBLEM SOLVED"
+                },
+                {
+                  "t": "p",
+                  "text": "Moving text and snippets between devices should not need email or chat."
+                }
+              ]
+            },
+            {
+              "id": "arch",
+              "label": "ARCHITECTURE",
+              "blocks": [
+                {
+                  "t": "steps",
+                  "items": [
+                    [
+                      "Copy",
+                      "Capture on device A."
+                    ],
+                    [
+                      "Bridge",
+                      "Dependable transfer between devices."
+                    ],
+                    [
+                      "Paste",
+                      "Available instantly on device B."
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "decisions",
+              "label": "DECISIONS",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "ENGINEERING DECISIONS"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Dependability first: a transfer must simply work.",
+                    "A direct cross-device bridge instead of email or chat.",
+                    "Keep copy and paste as the only gestures."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tech",
+              "label": "TECHNOLOGIES",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "Cross-device",
+                    "Desktop",
+                    "Utility"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "metrics",
+              "label": "METRICS",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "No quantified metric has been published for this project yet."
+                },
+                {
+                  "t": "h",
+                  "text": "VERIFIED OUTCOMES"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Frictionless cross-device transfer"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "github",
+              "label": "GITHUB",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Source and profile on GitHub. Opens in a new tab; your console session stays here."
+                },
+                {
+                  "t": "action",
+                  "label": "OPEN GITHUB",
+                  "href": "https://github.com/theunseenchapter",
+                  "hint": "github.com/theunseenchapter"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tangerine",
+          "label": "Tangerine",
+          "art": "orange",
+          "tag": "WINDOWS DESKTOP",
+          "desc": "Windows desktop · Qt, PySide6, Win32/OLE",
+          "pages": [
+            {
+              "id": "overview",
+              "label": "OVERVIEW",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Contextual file conversion with deep Windows integration."
+                }
+              ]
+            },
+            {
+              "id": "problem",
+              "label": "PROBLEM",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "PROBLEM SOLVED"
+                },
+                {
+                  "t": "p",
+                  "text": "File conversion should happen where the file already is, in context."
+                }
+              ]
+            },
+            {
+              "id": "arch",
+              "label": "ARCHITECTURE",
+              "blocks": [
+                {
+                  "t": "steps",
+                  "items": [
+                    [
+                      "Context",
+                      "Contextual conversion workflows."
+                    ],
+                    [
+                      "UI",
+                      "Qt and PySide6 interface."
+                    ],
+                    [
+                      "OS",
+                      "Win32 / OLE integration."
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "decisions",
+              "label": "DECISIONS",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "ENGINEERING DECISIONS"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Qt / PySide6 for the interface.",
+                    "Win32 / OLE integration for real OS-level reach.",
+                    "Convert in context, right where the file already is."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tech",
+              "label": "TECHNOLOGIES",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "Qt",
+                    "PySide6",
+                    "Win32",
+                    "OLE"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "metrics",
+              "label": "METRICS",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "No quantified metric has been published for this project yet."
+                },
+                {
+                  "t": "h",
+                  "text": "VERIFIED OUTCOMES"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Deep Windows desktop integration"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "github",
+              "label": "GITHUB",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Source and profile on GitHub. Opens in a new tab; your console session stays here."
+                },
+                {
+                  "t": "action",
+                  "label": "OPEN GITHUB",
+                  "href": "https://github.com/theunseenchapter",
+                  "hint": "github.com/theunseenchapter"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "contextword",
+          "label": "ContextWord",
+          "art": "book",
+          "tag": "BROWSER TOOLING",
+          "desc": "Browser extension · TypeScript, Chromium APIs",
+          "pages": [
+            {
+              "id": "overview",
+              "label": "OVERVIEW",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "A privacy-first offline dictionary that understands the sentence around a word."
+                }
+              ]
+            },
+            {
+              "id": "problem",
+              "label": "PROBLEM",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "PROBLEM SOLVED"
+                },
+                {
+                  "t": "p",
+                  "text": "Looking up a word should not leak what you are reading."
+                }
+              ]
+            },
+            {
+              "id": "arch",
+              "label": "ARCHITECTURE",
+              "blocks": [
+                {
+                  "t": "steps",
+                  "items": [
+                    [
+                      "Select",
+                      "Pick a word on any page."
+                    ],
+                    [
+                      "Context",
+                      "Reads the surrounding sentence."
+                    ],
+                    [
+                      "Lookup",
+                      "Offline, on-device dictionary."
+                    ],
+                    [
+                      "Speak",
+                      "Pronunciation."
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "decisions",
+              "label": "DECISIONS",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "ENGINEERING DECISIONS"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Offline, on-device dictionary so lookups never leak what you read.",
+                    "Read the surrounding sentence to pick the right meaning.",
+                    "TypeScript on Chromium APIs for a light extension."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tech",
+              "label": "TECHNOLOGIES",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "TypeScript",
+                    "Chromium APIs",
+                    "Offline-first"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "metrics",
+              "label": "METRICS",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "No quantified metric has been published for this project yet."
+                },
+                {
+                  "t": "h",
+                  "text": "VERIFIED OUTCOMES"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Offline lookup with pronunciation",
+                    "No text sent to remote services"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "github",
+              "label": "GITHUB",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Source and profile on GitHub. Opens in a new tab; your console session stays here."
+                },
+                {
+                  "t": "action",
+                  "label": "OPEN GITHUB",
+                  "href": "https://github.com/theunseenchapter",
+                  "hint": "github.com/theunseenchapter"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "excel",
+          "label": "Excel Validation Dashboard",
+          "art": "grid",
+          "tag": "PRODUCT ENGINEERING",
+          "desc": "Data quality · React, TypeScript, Material UI",
+          "pages": [
+            {
+              "id": "overview",
+              "label": "OVERVIEW",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Upload workbooks, validate them against backend templates and surface data-quality issues instantly."
+                }
+              ]
+            },
+            {
+              "id": "problem",
+              "label": "PROBLEM",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "PROBLEM SOLVED"
+                },
+                {
+                  "t": "p",
+                  "text": "Bad workbooks should be caught with clear feedback before they reach the backend."
+                }
+              ]
+            },
+            {
+              "id": "arch",
+              "label": "ARCHITECTURE",
+              "blocks": [
+                {
+                  "t": "steps",
+                  "items": [
+                    [
+                      "Upload",
+                      "Drop a workbook."
+                    ],
+                    [
+                      "Template",
+                      "Fetch the backend template (React Query)."
+                    ],
+                    [
+                      "Validate",
+                      "Typed validation against the template."
+                    ],
+                    [
+                      "Report",
+                      "Data-quality issues surfaced instantly."
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "decisions",
+              "label": "DECISIONS",
+              "blocks": [
+                {
+                  "t": "h",
+                  "text": "ENGINEERING DECISIONS"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Fetch templates from the backend (React Query): rules live in one place.",
+                    "Strongly typed validation against the template.",
+                    "Surface data-quality issues before they reach the backend."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tech",
+              "label": "TECHNOLOGIES",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "React",
+                    "TypeScript",
+                    "Material UI",
+                    "React Query"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "metrics",
+              "label": "METRICS",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "No quantified metric has been published for this project yet."
+                },
+                {
+                  "t": "h",
+                  "text": "VERIFIED OUTCOMES"
+                },
+                {
+                  "t": "list",
+                  "items": [
+                    "Responsive dashboard with strongly typed data fetching"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "github",
+              "label": "GITHUB",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Source and profile on GitHub. Opens in a new tab; your console session stays here."
+                },
+                {
+                  "t": "action",
+                  "label": "OPEN GITHUB",
+                  "href": "https://github.com/theunseenchapter",
+                  "hint": "github.com/theunseenchapter"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "experience",
+      "label": "EXPERIENCE",
+      "desc": "Production engineering at Synoriq.",
+      "icon": "case",
+      "items": [
+        {
+          "id": "synoriq",
+          "label": "Synoriq",
+          "art": "building",
+          "tag": "MAY 2026 — PRESENT",
+          "desc": "Associate Software Engineer I.",
+          "pages": [
+            {
+              "id": "role",
+              "label": "ROLE",
+              "blocks": [
+                {
+                  "t": "kv",
+                  "rows": [
+                    [
+                      "ROLE",
+                      "ASSOCIATE SOFTWARE ENGINEER I"
+                    ],
+                    [
+                      "WHEN",
+                      "MAY 2026 — PRESENT"
+                    ],
+                    [
+                      "WORK",
+                      "LOAN MANAGEMENT SYSTEM FOR AN NBFC CLIENT"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "work",
+              "label": "WORK",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "Build and optimise a loan management system for an NBFC client — SQL, data migration, Java/Spring Boot and Python services, React/TypeScript frontends.",
+                    "Cut report execution time from 2 minutes to 20 seconds.",
+                    "Ship ETL, migration and reconciliation workflows for clients managing ₹3,000+ crore and ₹500+ crore AUM.",
+                    "Investigate production issues and contribute to CI/CD releases."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "impact",
+              "label": "IMPACT",
+              "blocks": [
+                {
+                  "t": "stats",
+                  "items": [
+                    {
+                      "big": "2m → 20s",
+                      "label": "report execution time"
+                    },
+                    {
+                      "big": "₹3,000+ cr",
+                      "label": "client AUM supported"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "stack",
+              "label": "STACK",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "Java",
+                    "Spring Boot",
+                    "Python",
+                    "SQL",
+                    "React",
+                    "TypeScript",
+                    "ETL"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ifuture",
+          "label": "IFuture Technologies",
+          "art": "cloud",
+          "tag": "MAY — JUN 2024",
+          "desc": "Cloud Computing Intern.",
+          "pages": [
+            {
+              "id": "role",
+              "label": "ROLE",
+              "blocks": [
+                {
+                  "t": "kv",
+                  "rows": [
+                    [
+                      "ROLE",
+                      "CLOUD COMPUTING INTERN"
+                    ],
+                    [
+                      "WHEN",
+                      "MAY — JUN 2024"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "work",
+              "label": "WORK",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "Tested cloud-based applications.",
+                    "Reproduced and documented API issues.",
+                    "Wrote automation scripts.",
+                    "Worked in Agile sprints."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "stack",
+              "label": "STACK",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "Cloud",
+                    "API testing",
+                    "Automation",
+                    "Agile"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "pro-achievements",
+          "label": "Professional Achievements",
+          "art": "trophy",
+          "desc": "Numbers from production.",
+          "pages": [
+            {
+              "id": "impact",
+              "label": "IMPACT",
+              "blocks": [
+                {
+                  "t": "stats",
+                  "items": [
+                    {
+                      "big": "2m → 20s",
+                      "label": "report execution time"
+                    },
+                    {
+                      "big": "680+",
+                      "label": "tables mapped by DataScope"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "details",
+              "label": "DETAILS",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "Report execution cut from 2 minutes to 20 seconds.",
+                    "ETL, migration and reconciliation for clients managing ₹3,000+ crore and ₹500+ crore AUM.",
+                    "Production issue investigation and CI/CD releases."
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "label": "TECHNICAL SKILLS",
+      "desc": "Languages, backend, AI, data.",
+      "icon": "chip",
+      "items": [
+        {
+          "id": "lang",
+          "label": "Programming Languages",
+          "art": "chip",
+          "desc": "Java · Python · SQL · TS",
+          "pages": [
+            {
+              "id": "kit",
+              "label": "INVENTORY",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "Java",
+                    "Python",
+                    "SQL",
+                    "TypeScript"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "used",
+              "label": "USED FOR",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "Java: Spring Boot services at Synoriq.",
+                    "Python: FastAPI, PyTorch, PySide6.",
+                    "SQL: query writing, optimisation, migration.",
+                    "TypeScript: React frontends, ContextWord."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "backend",
+          "label": "Backend Engineering",
+          "art": "chip",
+          "desc": "Services, ETL, APIs",
+          "pages": [
+            {
+              "id": "kit",
+              "label": "INVENTORY",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "Spring Boot",
+                    "FastAPI",
+                    "REST APIs",
+                    "ETL",
+                    "Data migration",
+                    "CI/CD"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "used",
+              "label": "USED FOR",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "Backend services in Java and Python.",
+                    "ETL, migration and reconciliation workflows.",
+                    "Contributing to CI/CD releases."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ai",
+          "label": "AI / ML",
+          "art": "chip",
+          "desc": "Agents, RAG, diffusion",
+          "pages": [
+            {
+              "id": "kit",
+              "label": "INVENTORY",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "Agentic AI",
+                    "RAG",
+                    "NLP",
+                    "PyTorch",
+                    "Stable Diffusion"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "used",
+              "label": "USED FOR",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "MediSource: multi-agent ordering with RAG and NLP.",
+                    "Home Alchemy: fine-tuned diffusion, 60% faster inference."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "db",
+          "label": "Databases",
+          "art": "db",
+          "desc": "PostgreSQL & SQL tuning",
+          "pages": [
+            {
+              "id": "kit",
+              "label": "INVENTORY",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "PostgreSQL",
+                    "SQL",
+                    "Query optimisation",
+                    "Data migration"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "used",
+              "label": "USED FOR",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "DataScope: 680+ tables, 13K+ columns mapped.",
+                    "LMS reports: 2 minutes cut to 20 seconds."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "frontend",
+          "label": "Frontend",
+          "art": "grid",
+          "desc": "React, Next.js, TypeScript",
+          "pages": [
+            {
+              "id": "kit",
+              "label": "INVENTORY",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "React",
+                    "Next.js",
+                    "TypeScript",
+                    "Tailwind",
+                    "Material UI",
+                    "React Query"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "used",
+              "label": "USED FOR",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "Excel Validation Dashboard with typed data fetching.",
+                    "Home Alchemy product experience in Next.js.",
+                    "Operations UIs at Synoriq."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "Tools and Technologies",
+          "art": "clip",
+          "desc": "Desktop, browser, cloud",
+          "pages": [
+            {
+              "id": "kit",
+              "label": "INVENTORY",
+              "blocks": [
+                {
+                  "t": "chips",
+                  "items": [
+                    "Qt",
+                    "PySide6",
+                    "Win32 / OLE",
+                    "Chromium APIs",
+                    "CI/CD",
+                    "Agile",
+                    "Cloud"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "used",
+              "label": "USED FOR",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "Tangerine: Qt / PySide6 and Win32 / OLE.",
+                    "ContextWord: Chromium extension APIs.",
+                    "Agile delivery and cloud testing."
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "achievements",
+      "label": "ACHIEVEMENTS",
+      "desc": "Results backed by numbers.",
+      "icon": "trophy",
+      "items": [
+        {
+          "id": "perf",
+          "label": "Performance Optimization",
+          "art": "trophy",
+          "desc": "2 min → 20 sec.",
+          "pages": [
+            {
+              "id": "headline",
+              "label": "HEADLINE",
+              "blocks": [
+                {
+                  "t": "stats",
+                  "items": [
+                    {
+                      "big": "2m → 20s",
+                      "label": "report execution time"
+                    },
+                    {
+                      "big": "60%",
+                      "label": "faster model inference"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "where",
+              "label": "WHERE",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "Synoriq: report execution cut from 2 minutes to 20 seconds.",
+                    "Home Alchemy: diffusion inference time reduced by 60%."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dbeng",
+          "label": "Database Engineering",
+          "art": "db",
+          "desc": "680+ tables mapped.",
+          "pages": [
+            {
+              "id": "headline",
+              "label": "HEADLINE",
+              "blocks": [
+                {
+                  "t": "stats",
+                  "items": [
+                    {
+                      "big": "680+",
+                      "label": "tables mapped by DataScope"
+                    },
+                    {
+                      "big": "13K+",
+                      "label": "columns"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "where",
+              "label": "WHERE",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "DataScope: schema exploration, SQL validation and safety checks.",
+                    "Synoriq: SQL optimisation, data migration, reconciliation.",
+                    "Clients managing ₹3,000+ crore and ₹500+ crore AUM."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "aiopt",
+          "label": "AI Optimization",
+          "art": "pill",
+          "desc": "60% faster inference.",
+          "pages": [
+            {
+              "id": "headline",
+              "label": "HEADLINE",
+              "blocks": [
+                {
+                  "t": "stats",
+                  "items": [
+                    {
+                      "big": "60%",
+                      "label": "faster model inference"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "where",
+              "label": "WHERE",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "Home Alchemy: fine-tuned Stable Diffusion on PyTorch.",
+                    "MediSource: multi-agent RAG platform (in development)."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "product",
+          "label": "Product Development",
+          "art": "house",
+          "desc": "7 products built.",
+          "pages": [
+            {
+              "id": "headline",
+              "label": "HEADLINE",
+              "blocks": [
+                {
+                  "t": "stats",
+                  "items": [
+                    {
+                      "big": "7",
+                      "label": "products & tools (1 in development)"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "where",
+              "label": "THE LINEUP",
+              "blocks": [
+                {
+                  "t": "list",
+                  "items": [
+                    "DataScope",
+                    "MediSource",
+                    "Home Alchemy",
+                    "Excel Validation Dashboard",
+                    "ClipBridge",
+                    "Tangerine",
+                    "ContextWord"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "label": "CONTACT",
+      "desc": "Say hello or grab the resume.",
+      "icon": "mail",
+      "items": [
+        {
+          "id": "email",
+          "label": "Email",
+          "art": "mail",
+          "desc": "vivek.yadav03@gmail.com",
+          "pages": [
+            {
+              "id": "send",
+              "label": "SEND",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "vivek.yadav03@gmail.com"
+                },
+                {
+                  "t": "action",
+                  "label": "WRITE EMAIL",
+                  "href": "mailto:vivek.yadav03@gmail.com",
+                  "hint": "Opens your mail app"
+                }
+              ]
+            },
+            {
+              "id": "copy",
+              "label": "COPY",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Copy the address to your clipboard."
+                },
+                {
+                  "t": "action",
+                  "label": "COPY ADDRESS",
+                  "copy": "vivek.yadav03@gmail.com",
+                  "hint": "vivek.yadav03@gmail.com"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "linkedin",
+          "label": "LinkedIn",
+          "art": "person",
+          "desc": "linkedin.com/in/vivekyadav03",
+          "pages": [
+            {
+              "id": "open",
+              "label": "PROFILE",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Professional profile and work history."
+                },
+                {
+                  "t": "action",
+                  "label": "OPEN LINKEDIN",
+                  "href": "https://www.linkedin.com/in/vivekyadav03",
+                  "hint": "Opens in a new tab"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "github",
+          "label": "GitHub",
+          "art": "clip",
+          "desc": "github.com/theunseenchapter",
+          "pages": [
+            {
+              "id": "open",
+              "label": "PROFILE",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Source code and projects."
+                },
+                {
+                  "t": "action",
+                  "label": "OPEN GITHUB",
+                  "href": "https://github.com/theunseenchapter",
+                  "hint": "Opens in a new tab"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "resume",
+          "label": "Download Resume",
+          "art": "resume",
+          "desc": "Printable resume · save as PDF.",
+          "pages": [
+            {
+              "id": "get",
+              "label": "RESUME",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "Opens in a new tab. Use PRINT, then SAVE AS PDF, to download it."
+                },
+                {
+                  "t": "action",
+                  "label": "OPEN RESUME",
+                  "href": "/resume",
+                  "hint": "Opens in a new tab"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
